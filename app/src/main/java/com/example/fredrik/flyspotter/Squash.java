@@ -6,17 +6,18 @@ import android.graphics.Canvas;
 /**
  * Created by Fredrik on 24.11.2015.
  */
-public class Smoke extends GameObject
+public class Squash extends GameObject
 {
     private Bitmap spritesheet;
     private Animation animation = new Animation();
 
-    public Smoke(Bitmap res, int w, int h, int numFrames, int x, int y)
+    public Squash(Bitmap res, int w, int h, int numFrames, int x, int y)
     {
         super.x = x;
         super.y = y;
         height = h;
         width = w;
+
 
         //Array to sort out the different sprites
         Bitmap[] image = new Bitmap[numFrames];
@@ -45,6 +46,8 @@ public class Smoke extends GameObject
         }
 
     }
+
+
 
     public void draw(Canvas canvas)
     {

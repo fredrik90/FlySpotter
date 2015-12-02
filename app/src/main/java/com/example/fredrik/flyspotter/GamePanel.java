@@ -2,6 +2,7 @@ package com.example.fredrik.flyspotter;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Color;
@@ -12,6 +13,7 @@ import android.support.v4.content.IntentCompat;
 import android.view.MotionEvent;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
+
 import java.util.ArrayList;
 
 /**
@@ -23,7 +25,7 @@ public class GamePanel extends SurfaceView implements SurfaceHolder.Callback
 {
     public static final int WIDTH = 384;
     public static final int HEIGHT = 430;
-    public int xpos;
+    public double xpos;
     public int ypos;
     public int drawboxLenght;
     public int spawn;
@@ -37,10 +39,15 @@ public class GamePanel extends SurfaceView implements SurfaceHolder.Callback
     private int cakeanimation3;
     private int cakeanimation4;
     private int cakeanimation5;
+    boolean touch;
     public int score;
+    public int time;
     private ArrayList<Fly> flies;
     private ArrayList<Smoke> smokes;
+    private ArrayList<Squash> squash;
     private Context mContext;
+    int Checkwidth = this.getResources().getDisplayMetrics().widthPixels;
+    int Checkheight = this.getResources().getDisplayMetrics().heightPixels;
 
 
 
@@ -48,14 +55,19 @@ public class GamePanel extends SurfaceView implements SurfaceHolder.Callback
     public GamePanel (Context context) {
 
         super(context);
+
         this.mContext = context;
+
 
 
         //Add the callback to the surface holder to intercept events
         getHolder().addCallback(this);
 
+
         //make gamePanel focusable so it can handle events
         setFocusable(true);
+
+
     }
 
 
@@ -74,6 +86,7 @@ public class GamePanel extends SurfaceView implements SurfaceHolder.Callback
                 thread.join();
                 retry = false;
             }catch(InterruptedException e){e.printStackTrace();}
+
 
         }
 
@@ -102,6 +115,7 @@ public class GamePanel extends SurfaceView implements SurfaceHolder.Callback
         cake = new Cake(BitmapFactory.decodeResource(getResources(), R.drawable.cake), 128, 96, 3);
         flies = new ArrayList<>();
         smokes = new ArrayList<>();
+        squash = new ArrayList<>();
 
         //Start the game loop
         thread.setRunning(true);
@@ -109,51 +123,58 @@ public class GamePanel extends SurfaceView implements SurfaceHolder.Callback
 
     }
 
-    /*@Override
-    public boolean onTouchEvent(MotionEvent event)
-    {
-        if(event.getAction()==MotionEvent.ACTION_DOWN){
-            flies.add(new Fly(BitmapFactory.decodeResource(getResources(), R.drawable.fly1_sprite), 32, 32, 4));
-        }
-        if(event.getAction()==MotionEvent.ACTION_UP)
-        {
-            flies.add(new Fly(BitmapFactory.decodeResource(getResources(), R.drawable.fly1_sprite), 32, 32, 4));
-        }
-
-        return super.onTouchEvent(event);
-    }*/
-
-
     @Override
+    //Click on enemies.
     public boolean onTouchEvent(MotionEvent e) {
 
-            int get_xpos = (int) e.getX();
-            int get_ypos = (int) e.getY();
-            xpos = get_xpos;
-            ypos = get_ypos;
+        final int action = e.getAction();
+        //Must tap on the enemies!
+        switch (action & MotionEvent.ACTION_MASK) {
+            case MotionEvent.ACTION_DOWN: {
+                //Get the x and y coordinate of where you touched on the screen!
+                int get_xpos = (int) e.getX();
+                int get_ypos = (int) e.getY();
+                //This will get a new x and y coordinate, so its the same as the
+                //gamepanel's, that is 384 X 430, and not get the x and y coordinate
+                //of the resolution of the screen!
+                xpos = get_xpos * WIDTH / Checkwidth;
+                ypos = get_ypos * HEIGHT / Checkheight;
 
+                //touch must be true if you want to squash the enemies!
+                //Without this you can tap on one place, and if the enemies
+                //run into that place later, they will be squashed!
+                touch = true;
+
+                break;
+            }
+            //This prevent the user from moving the finger over enemies!
+            case MotionEvent.ACTION_MOVE: {
+                xpos = -100;
+                ypos = -100;
+                break;
+            }
+        }
         return true;
     }
-
 
     public void update()
     {
 
-        //System.out.println(xpos);
+        System.out.println(touch);
 
         bg.update();
         cake.update();
 
-        //Stops the score, when you are out of lives
-        if (lives >= 0){
-        score++;}
+
         timer++;
+        time++;
 
         if (lives <= 0) {
             //Game over, starts the game over activity
             Intent intent = new Intent(mContext, GameOver.class);
             intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | IntentCompat.FLAG_ACTIVITY_CLEAR_TASK);
             intent.putExtra("Score", score);
+
 
             mContext.startActivity(intent);
         }
@@ -162,28 +183,23 @@ public class GamePanel extends SurfaceView implements SurfaceHolder.Callback
         //And add smoke
         if (lives == 4 && cakeanimation1 == 1){
                 cake = new Cake(BitmapFactory.decodeResource(getResources(), R.drawable.cake2), 128, 96, 3);
-                smokes.add(new Smoke(BitmapFactory.decodeResource(getResources(), R.drawable.smoke), 64, 64, 8));
                 cakeanimation1 = 0;}
 
         if (lives == 3 && cakeanimation2 == 1){
             cake = new Cake(BitmapFactory.decodeResource(getResources(), R.drawable.cake3), 128, 96, 3);
-            smokes.add(new Smoke(BitmapFactory.decodeResource(getResources(), R.drawable.smoke), 64, 64, 8));
             cakeanimation2 = 0;}
 
         if (lives == 2 && cakeanimation3 == 1){
             cake = new Cake(BitmapFactory.decodeResource(getResources(), R.drawable.cake4), 128, 96, 3);
-            smokes.add(new Smoke(BitmapFactory.decodeResource(getResources(), R.drawable.smoke), 64, 64, 8));
             cakeanimation3 = 0;}
 
         if (lives == 1 && cakeanimation4 == 1){
             cake = new Cake(BitmapFactory.decodeResource(getResources(), R.drawable.cake5), 128, 96, 1);
-            smokes.add(new Smoke(BitmapFactory.decodeResource(getResources(), R.drawable.smoke), 64, 64, 8));
             cakeanimation4 = 0;
         }
 
         if (lives <= 0 && cakeanimation5 == 1){
             cake = new Cake(BitmapFactory.decodeResource(getResources(), R.drawable.dish), 128, 96, 1);
-            smokes.add(new Smoke(BitmapFactory.decodeResource(getResources(), R.drawable.smoke), 64, 64, 8));
             cakeanimation5 = 0;
         }
 
@@ -192,43 +208,43 @@ public class GamePanel extends SurfaceView implements SurfaceHolder.Callback
         //The higher score, the more flies will come
         //Minimum of regular flies will spawn every third second.
         //Maximum of regular flies will spawn after 6 minutes, then it spawn a regular fly pr second.
-        if (score < 900){spawn = 90;}
+        if (time < 900){spawn = 90;}
         //Resets the timer
-        if (score == 899){timer = 0;}
-        if (score > 900 && score < 1800){spawn = 85;}
+        if (time == 899){timer = 0;}
+        if (time > 900 && time < 1800){spawn = 85;}
 
-        if (score == 1799){timer = 0;}
-        if (score > 1800 && score < 2700){spawn = 80;}
+        if (time == 1799){timer = 0;}
+        if (time > 1800 && time < 2700){spawn = 80;}
 
-        if (score == 2699){timer = 0;}
-        if (score > 2700 && score < 3600){spawn = 75;}
+        if (time == 2699){timer = 0;}
+        if (time > 2700 && time < 3600){spawn = 75;}
 
-        if (score == 3599){timer = 0;}
-        if (score > 3600 && score < 4500){spawn = 70;}
+        if (time == 3599){timer = 0;}
+        if (time > 3600 && time < 4500){spawn = 70;}
 
-        if (score == 4499){timer = 0;}
-        if (score > 4500 && score < 5400){spawn = 65;}
+        if (time == 4499){timer = 0;}
+        if (time > 4500 && time < 5400){spawn = 65;}
 
-        if (score == 5399){timer = 0;}
-        if (score > 5400 && score < 6300){spawn = 60;}
+        if (time == 5399){timer = 0;}
+        if (time > 5400 && time < 6300){spawn = 60;}
 
-        if (score == 6299){timer = 0;}
-        if (score > 6300 && score < 7200){spawn = 55;}
+        if (time == 6299){timer = 0;}
+        if (time > 6300 && time < 7200){spawn = 55;}
 
-        if (score == 7199){timer = 0;}
-        if (score > 7200 && score < 8100){spawn = 50;}
+        if (time == 7199){timer = 0;}
+        if (time > 7200 && time < 8100){spawn = 50;}
 
-        if (score == 8099){timer = 0;}
-        if (score > 8100 && score < 9000){spawn = 45;}
+        if (time == 8099){timer = 0;}
+        if (time > 8100 && time < 9000){spawn = 45;}
 
-        if (score == 8999){timer = 0;}
-        if (score > 9000 && score < 9900){spawn = 40;}
+        if (time == 8999){timer = 0;}
+        if (time > 9000 && time < 9900){spawn = 40;}
 
-        if (score == 9899){timer = 0;}
-        if (score > 9900 && score < 10800){spawn = 35;}
+        if (time == 9899){timer = 0;}
+        if (time > 9900 && time < 10800){spawn = 35;}
 
-        if (score == 10799){timer = 0;}
-        if (score > 10800){spawn = 30;}
+        if (time == 10799){timer = 0;}
+        if (time > 10800){spawn = 30;}
 
             if (timer == spawn) {
                 timer = 0;
@@ -240,8 +256,19 @@ public class GamePanel extends SurfaceView implements SurfaceHolder.Callback
         for(int i = 0; i<smokes.size();i++)
         {
             smokes.get(i).update();
+            //removes after animation
+            if (smokes.get(i).x < -99){smokes.remove(i);}
 
         }
+
+        //Loop through every squash
+        for(int i = 0; i<squash.size();i++)
+        {
+            squash.get(i).update();
+            //removes after animation
+            if (squash.get(i).x < -99){squash.remove(i);}
+        }
+
         //Loop through every fly, check for collision and remove
         for (int i = 0; i < flies.size(); i++)
         {
@@ -250,32 +277,29 @@ public class GamePanel extends SurfaceView implements SurfaceHolder.Callback
             flies.get(i).update();
 
                 //If you click on the fly, it will be squashed.
-                //It only compare the fly coordinations with the ontouch coordinations.
-                if (flies.get(i).x < xpos + 16 && flies.get(i).x > xpos  - 16
-                        && flies.get(i).y < ypos + 16 && flies.get(i).y > ypos - 16) {
+                //It only compare the fly coordination with the ontouch coordination.
+            if (touch == true) {
+                if (flies.get(i).x < xpos + 8 && flies.get(i).x > xpos - 32
+                        && flies.get(i).y < ypos + 8 && flies.get(i).y > ypos - 32) {
+                    squash.add(new Squash(BitmapFactory.decodeResource(getResources(), R.drawable.squash), 32, 32, 8, flies.get(i).x, flies.get(i).y));
                     flies.remove(i);
+                    score += 10;
                     break;
                 }
-
-
-           /* if (flies.get(i).x < xpos / 2.79 + 16 && flies.get(i).x > xpos / 2.79 - 16
-                    && flies.get(i).y < ypos / 5.35 + 16 && flies.get(i).y > ypos / 5.35 - 16) {
-                flies.remove(i);
-                break; */
+            }
 
 
             if(collision(flies.get(i), cake))
             {
                 //Remove the flies, when colliding with the cake!
+                smokes.add(new Smoke(BitmapFactory.decodeResource(getResources(), R.drawable.smoke), 64, 64, 8, flies.get(i).x - 16, flies.get(i).y));
                 flies.remove(i);
                 lives-=1;
                 break;
             }
         }
 
-
-
-
+    touch = false;
     }
 
     public boolean collision(GameObject a, GameObject b)
@@ -314,6 +338,12 @@ public class GamePanel extends SurfaceView implements SurfaceHolder.Callback
             for(Smoke s: smokes)
             {
                 s.draw(canvas);
+            }
+
+            //draw squash
+            for(Squash sq: squash)
+            {
+                sq.draw(canvas);
             }
 
             canvas.restoreToCount(savedState);

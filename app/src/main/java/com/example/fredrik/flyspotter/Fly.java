@@ -4,6 +4,7 @@ import android.graphics.Bitmap;
 import android.graphics.Canvas;
 
 
+
 /**
  * Created by Fredrik on 24.11.2015.
  */
@@ -15,6 +16,7 @@ public class Fly extends GameObject
     //Create the random number, for the x axis.
     int randomNum = (int) Math.ceil(Math.random() * 256);
     int randomNum2 = (int) Math.ceil(Math.random() * 48);
+
 
 
     public Fly(Bitmap res, int w, int h, int numFrames)
@@ -36,6 +38,7 @@ public class Fly extends GameObject
         {
             image[i] = Bitmap.createBitmap(spritesheet, i*width, 0, width, height);
         }
+
 
         animation.setFrames(image);
         animation.setDelay(2);
@@ -59,13 +62,13 @@ public class Fly extends GameObject
         y+=2;
 
         animation.update();
+
     }
 
     public void draw(Canvas canvas)
     {
         canvas.drawBitmap(animation.getImage(), x, y, null);
     }
-
 
 
 }
