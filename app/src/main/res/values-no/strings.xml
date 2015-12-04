@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">FlySpotter</string>
+    <string name="action_settings">Instillinger</string>
+    <string name="btnExitGame">Avslutt</string>
+    <string name="btnRetryGame">Restart</string>
+    <string name="btnStartGame">Start Spill</string>
+    <string name="gameoverText">Du Tapte!</string>
+    <string name="yourscoreText">Dine Poeng</string>
+</resources>

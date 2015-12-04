@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">FlySpotter</string>
+    <string name="action_settings">Settings</string>
+    <string name="btnExitGame">Exit</string>
+    <string name="btnRetryGame">Retry</string>
+    <string name="btnStartGame">Start Game</string>
+    <string name="gameoverText">Game Over</string>
+    <string name="yourscoreText">Your Score</string>
+</resources>
