@@ -39,12 +39,18 @@ public class GamePanel extends SurfaceView implements SurfaceHolder.Callback
     private int cakeanimation3;
     private int cakeanimation4;
     private int cakeanimation5;
-    boolean touch;
+    int flyswattermove = 0;
+    boolean flyswatterSwat;
+    boolean flyswatterSwitch = false;
     public int score;
     public int time;
+    public int swatswitch = 0;
     private ArrayList<Fly> flies;
+    private ArrayList<Bumblebee> bumblebee;
     private ArrayList<Smoke> smokes;
     private ArrayList<Squash> squash;
+    private ArrayList<Flyswatter> flyswatter;
+    private ArrayList<ShowScore> showscore;
     private Context mContext;
     int Checkwidth = this.getResources().getDisplayMetrics().widthPixels;
     int Checkheight = this.getResources().getDisplayMetrics().heightPixels;
@@ -114,8 +120,13 @@ public class GamePanel extends SurfaceView implements SurfaceHolder.Callback
         bg = new Background(BitmapFactory.decodeResource(getResources(), R.drawable.background1));
         cake = new Cake(BitmapFactory.decodeResource(getResources(), R.drawable.cake), 128, 96, 3);
         flies = new ArrayList<>();
+        bumblebee = new ArrayList<>();
         smokes = new ArrayList<>();
         squash = new ArrayList<>();
+        flyswatter = new ArrayList<>();
+        showscore = new ArrayList<>();
+        flyswatter.add(new Flyswatter(BitmapFactory.decodeResource(getResources(), R.drawable.fly_swatter), 96, 512, 1, 256, 334));
+
 
         //Start the game loop
         thread.setRunning(true);
@@ -124,11 +135,11 @@ public class GamePanel extends SurfaceView implements SurfaceHolder.Callback
     }
 
     @Override
-    //Click on enemies.
+
     public boolean onTouchEvent(MotionEvent e) {
 
         final int action = e.getAction();
-        //Must tap on the enemies!
+        //Must tap!
         switch (action & MotionEvent.ACTION_MASK) {
             case MotionEvent.ACTION_DOWN: {
                 //Get the x and y coordinate of where you touched on the screen!
@@ -140,19 +151,15 @@ public class GamePanel extends SurfaceView implements SurfaceHolder.Callback
                 xpos = get_xpos * WIDTH / Checkwidth;
                 ypos = get_ypos * HEIGHT / Checkheight;
 
-                //touch must be true if you want to squash the enemies!
-                //Without this you can tap on one place, and if the enemies
-                //run into that place later, they will be squashed!
-                touch = true;
+                //This will make you wait for the flyswatter, so you only can swat again after the flyswatter are back on its original place!
+
+                if (flyswatterSwitch == false){
+                    flyswattermove = 1;
+                    flyswatterSwitch = true;}
 
                 break;
             }
-            //This prevent the user from moving the finger over enemies!
-            case MotionEvent.ACTION_MOVE: {
-                xpos = -100;
-                ypos = -100;
-                break;
-            }
+
         }
         return true;
     }
@@ -160,7 +167,6 @@ public class GamePanel extends SurfaceView implements SurfaceHolder.Callback
     public void update()
     {
 
-        System.out.println(touch);
 
         bg.update();
         cake.update();
@@ -168,6 +174,7 @@ public class GamePanel extends SurfaceView implements SurfaceHolder.Callback
 
         timer++;
         time++;
+
 
         if (lives <= 0) {
             //Game over, starts the game over activity
@@ -250,6 +257,8 @@ public class GamePanel extends SurfaceView implements SurfaceHolder.Callback
                 timer = 0;
                 //Create the flies!
                 flies.add(new Fly(BitmapFactory.decodeResource(getResources(), R.drawable.fly1_sprite), 32, 32, 4));
+                //Add bumblebees after one minute!
+                if (time > 1800){bumblebee.add(new Bumblebee(BitmapFactory.decodeResource(getResources(), R.drawable.bumblebee), 48, 48, 2));}
             }
 
         //Loop through every smoke
@@ -266,7 +275,15 @@ public class GamePanel extends SurfaceView implements SurfaceHolder.Callback
         {
             squash.get(i).update();
             //removes after animation
-            if (squash.get(i).x < -99){squash.remove(i);}
+            if (squash.get(i).y > 500){squash.remove(i);}
+        }
+
+        //Loop through every showscore
+        for(int i = 0; i<showscore.size();i++)
+        {
+            showscore.get(i).update();
+            //removes after animation
+            if (showscore.get(i).y < -32){showscore.remove(i);}
         }
 
         //Loop through every fly, check for collision and remove
@@ -276,17 +293,17 @@ public class GamePanel extends SurfaceView implements SurfaceHolder.Callback
             //Update the fly
             flies.get(i).update();
 
-                //If you click on the fly, it will be squashed.
-                //It only compare the fly coordination with the ontouch coordination.
-            if (touch == true) {
-                if (flies.get(i).x < xpos + 8 && flies.get(i).x > xpos - 32
-                        && flies.get(i).y < ypos + 8 && flies.get(i).y > ypos - 32) {
-                    squash.add(new Squash(BitmapFactory.decodeResource(getResources(), R.drawable.squash), 32, 32, 8, flies.get(i).x, flies.get(i).y));
+            //It only compare the fly coordination with the flyswatter coordination.
+            //When they collide, the fly will be squashed
+
+                if (flies.get(i).x < flyswatter.get(0).x + 8 && flies.get(i).x > flyswatter.get(0).x - 64
+                        && flies.get(i).y < flyswatter.get(0).y + 8 && flies.get(i).y > flyswatter.get(0).y - 64 && flyswatterSwat == true) {
+                    squash.add(new Squash(BitmapFactory.decodeResource(getResources(), R.drawable.fly1_squash), 32, 32, 1, flies.get(i).x, flies.get(i).y));
+                    showscore.add(new ShowScore(BitmapFactory.decodeResource(getResources(), R.drawable.score10), 48, 48, 20, flies.get(i).x, flies.get(i).y));
                     flies.remove(i);
                     score += 10;
                     break;
                 }
-            }
 
 
             if(collision(flies.get(i), cake))
@@ -294,12 +311,90 @@ public class GamePanel extends SurfaceView implements SurfaceHolder.Callback
                 //Remove the flies, when colliding with the cake!
                 smokes.add(new Smoke(BitmapFactory.decodeResource(getResources(), R.drawable.smoke), 64, 64, 8, flies.get(i).x - 16, flies.get(i).y));
                 flies.remove(i);
+                lives -= 1;
+                flyswatterSwat = false;
+                break;
+            }
+        }
+
+        //Loop through every bumblebee, check for collision and remove
+        for (int i = 0; i < bumblebee.size(); i++)
+        {
+
+            //Update the bumblebee
+            bumblebee.get(i).update();
+
+
+            //It only compare the bumblebee coordination with the flyswatter coordination.
+            //When they collide, the bumblebee will be squashed
+                if (bumblebee.get(i).x < flyswatter.get(0).x + 8 && bumblebee.get(i).x > flyswatter.get(0).x - 64
+                        && bumblebee.get(i).y < flyswatter.get(0).y + 8 && bumblebee.get(i).y > flyswatter.get(0).y - 64  && flyswatterSwat == true) {
+
+
+                    bumblebee.get(i).lives -= 1;
+
+                    if (bumblebee.get(i).lives <= 0) {
+                        squash.add(new Squash(BitmapFactory.decodeResource(getResources(), R.drawable.bumblebee_squash), 48, 48, 1, bumblebee.get(i).x, bumblebee.get(i).y));
+                        showscore.add(new ShowScore(BitmapFactory.decodeResource(getResources(), R.drawable.score20), 48, 48, 20, bumblebee.get(i).x, bumblebee.get(i).y));
+                        bumblebee.remove(i);
+                        score += 20;
+                        break;
+                    }
+                    flyswatterSwat = false;
+                }
+
+
+            if(collision(bumblebee.get(i), cake))
+            {
+                //Remove the flies, when colliding with the cake!
+                smokes.add(new Smoke(BitmapFactory.decodeResource(getResources(), R.drawable.smoke), 64, 64, 8, bumblebee.get(i).x - 16, bumblebee.get(i).y));
+                bumblebee.remove(i);
                 lives-=1;
                 break;
             }
         }
 
-    touch = false;
+
+            //Sets up the ontouch position, and the original position
+            double theta = Math.atan2(ypos - flyswatter.get(0).y, xpos - flyswatter.get(0).x);
+            double theta2 = Math.atan2(334 - flyswatter.get(0).y, 256 - flyswatter.get(0).x);
+            //Update the flyswatter
+            flyswatter.get(0).update();
+
+            //When the flyswatter reach the ontouch position, it will go back to its original place!
+            if (flyswatter.get(0).x < xpos + 20 && flyswatter.get(0).x > xpos - 20
+                    && flyswatter.get(0).y < ypos + 20 && flyswatter.get(0).y > ypos - 20 && flyswattermove == 1) {
+                flyswattermove = 0;
+                //The enemies can only be squashed when this variable is true, it will prevent
+                //the flyswatter to swat the enemies all the time when it go through them, this
+                //gives the illusion that you actually swat them!
+                flyswatterSwat = true;
+                swatswitch = 0;
+            }
+            //Sets the flyswatter to a given place, when its nearby, and on its way back!
+            if (flyswatter.get(0).x < 354 && flyswatter.get(0).x > 236
+                    && flyswatter.get(0).y < 354 && flyswatter.get(0).y > 314 && flyswattermove == 0) {
+                flyswatter.get(0).x = 256;
+                flyswatter.get(0).y = 334;
+                flyswattermove = 2;
+                flyswatterSwitch = false;
+            }
+            //Move the flyswatter to ontouch position
+            if (flyswattermove == 1){
+            flyswatter.get(0).x += 40 * Math.cos(theta);
+            flyswatter.get(0).y += 40 * Math.sin(theta);
+            }
+            //Move the flyswatter back!
+            if (flyswattermove == 0){
+                flyswatter.get(0).x += 40 * Math.cos(theta2);
+                flyswatter.get(0).y += 40 * Math.sin(theta2);
+
+                if (swatswitch >= 1){flyswatterSwat = false;}
+
+            }
+
+        swatswitch++;
+
     }
 
     public boolean collision(GameObject a, GameObject b)
@@ -334,6 +429,12 @@ public class GamePanel extends SurfaceView implements SurfaceHolder.Callback
                 f.draw(canvas);
             }
 
+            //draw bumblebees
+            for(Bumblebee b: bumblebee)
+            {
+                b.draw(canvas);
+            }
+
             //draw smokes
             for(Smoke s: smokes)
             {
@@ -344,6 +445,18 @@ public class GamePanel extends SurfaceView implements SurfaceHolder.Callback
             for(Squash sq: squash)
             {
                 sq.draw(canvas);
+            }
+
+            //draw flyswatter
+            for(Flyswatter fs: flyswatter)
+            {
+                fs.draw(canvas);
+            }
+
+            //draw showscore
+            for(ShowScore ss: showscore)
+            {
+                ss.draw(canvas);
             }
 
             canvas.restoreToCount(savedState);

@@ -4,15 +4,15 @@ import android.graphics.Bitmap;
 import android.graphics.Canvas;
 
 /**
- * Created by Fredrik on 24.11.2015.
+ * Created by Fredrik on 04.12.2015.
  */
-public class Squash extends GameObject
-{
+public class ShowScore extends GameObject {
+
     private Bitmap spritesheet;
     private Animation animation = new Animation();
     float speed = 0;
 
-    public Squash(Bitmap res, int w, int h, int numFrames, int x, int y)
+    public ShowScore(Bitmap res, int w, int h, int numFrames, int x, int y)
     {
         super.x = x;
         super.y = y;
@@ -35,11 +35,15 @@ public class Squash extends GameObject
 
     public void update()
     {
-            speed += 0.75;
+        speed += 0.25;
 
+        y-=speed;
+
+        //Only go through animation once
+        if(!animation.playedOnce())
+        {
             animation.update();
-
-            y+=speed;
+        }
 
     }
 
@@ -49,7 +53,5 @@ public class Squash extends GameObject
     {
         canvas.drawBitmap(animation.getImage(), x, y, null);
     }
-
-
 
 }

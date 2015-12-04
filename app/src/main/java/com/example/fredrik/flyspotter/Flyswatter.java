@@ -4,15 +4,16 @@ import android.graphics.Bitmap;
 import android.graphics.Canvas;
 
 /**
- * Created by Fredrik on 24.11.2015.
+ * Created by Fredrik on 03.12.2015.
  */
-public class Squash extends GameObject
-{
+public class Flyswatter extends GameObject {
+
     private Bitmap spritesheet;
     private Animation animation = new Animation();
-    float speed = 0;
 
-    public Squash(Bitmap res, int w, int h, int numFrames, int x, int y)
+
+
+    public Flyswatter(Bitmap res, int w, int h, int numFrames, int x, int y)
     {
         super.x = x;
         super.y = y;
@@ -29,27 +30,22 @@ public class Squash extends GameObject
             image[i] = Bitmap.createBitmap(spritesheet, i*width, 0, width, height);
         }
 
+
         animation.setFrames(image);
-        animation.setDelay(40);
+        animation.setDelay(2);
+
     }
 
     public void update()
     {
-            speed += 0.75;
 
-            animation.update();
-
-            y+=speed;
+        animation.update();
 
     }
-
-
 
     public void draw(Canvas canvas)
     {
         canvas.drawBitmap(animation.getImage(), x, y, null);
     }
-
-
 
 }
