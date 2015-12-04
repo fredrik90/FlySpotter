@@ -17,10 +17,11 @@ public class Bumblebee extends GameObject {
     //Create the random number, for the x axis.
     int randomNum = (int) Math.ceil(Math.random() * 336);
     int randomNum2 = (int) Math.ceil(Math.random() * 48);
-    int randomNum3 = (int) Math.ceil(Math.random() * 100) + 200;
+    int randomNum3 = (int) Math.ceil(Math.random() * 100) + 150;
     double speed = 1.5;
     int lives = 2;
     int newspeed = 0;
+    int shake = 1;
 
 
 
@@ -56,14 +57,26 @@ public class Bumblebee extends GameObject {
         if (y > randomNum3) {
             //Make the flies fly to the cake!
             if (x <= 160 - randomNum2) {
-                x += 3.5;
+                x += 4;
             }
             if (x >= 160 + randomNum2) {
-                x -= 3.5;
+                x -= 4;
             }
         }
-        //The bumblebee becomes faster if it has one life left!
-        if (lives < 2){newspeed = 2;}
+        //The bumblebee becomes faster if it has one life left, and shakes!
+        if (lives < 2){
+
+            newspeed = 2;
+            if (shake >= 0 && shake < 3){
+                x += 2;
+                shake++;
+            }
+            if (shake >= 3 && shake < 6){
+                x -= 2;
+                shake++;
+                if (shake == 5){shake = 0;}
+            }
+        }
         //speed
         y += speed + newspeed;
 

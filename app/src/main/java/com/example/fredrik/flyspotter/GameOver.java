@@ -1,7 +1,9 @@
 package com.example.fredrik.flyspotter;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
@@ -16,6 +18,8 @@ import android.widget.TextView;
 
 public class GameOver extends Activity {
 
+    //SharedPreferences prefs = this.getSharedPreferences("FlySpotterPref", Context.MODE_PRIVATE);
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,6 +28,10 @@ public class GameOver extends Activity {
         //Get the latest score!
         Intent intent = getIntent();
         int scoreValue = intent.getIntExtra("Score", 0);
+
+       /* SharedPreferences.Editor editor = prefs.edit();
+        editor.putInt("HighScore", scoreValue);
+        editor.commit(); */
 
         //Turn title off
         requestWindowFeature(Window.FEATURE_NO_TITLE);
@@ -44,6 +52,14 @@ public class GameOver extends Activity {
     public void ClickStartGame(View view) {
         setContentView(new GamePanel(this));
     }
+
+    //Highscore
+    public void ClickHighScore(View view) {
+        Intent intent = new Intent(this, HighScores.class);
+        startActivity(intent);
+    }
+
+
     //Exit Game
     public void ClickExitGame(View view) {
         System.exit(0);

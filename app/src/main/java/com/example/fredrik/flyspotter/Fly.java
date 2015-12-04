@@ -51,10 +51,10 @@ public class Fly extends GameObject
         if (y > randomNum - 200) {
             //Make the flies fly to the cake!
             if (x <= 160 - randomNum2) {
-                x++;
+                x += 2;
             }
             if (x >= 160 + randomNum2) {
-                x--;
+                x -= 2;
             }
         }
         //speed

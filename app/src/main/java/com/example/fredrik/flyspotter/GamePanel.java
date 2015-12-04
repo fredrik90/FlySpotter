@@ -263,15 +263,18 @@ public class GamePanel extends SurfaceView implements SurfaceHolder.Callback
         if (time == 10799){timer = 0;}
         if (time > 10800){spawn = 30;}
 
+        //1800 = 1 minute!
             if (timer == spawn) {
                 timer = 0;
                 //Create the flies!
-                flies.add(new Fly(BitmapFactory.decodeResource(getResources(), R.drawable.fly1_sprite), 32, 32, 4));
+                flies.add(new Fly(BitmapFactory.decodeResource(getResources(), R.drawable.fly1_sprite), 48, 32, 3));
+
+                //Adds mosquitoes after two minutes!
+                if (time > 900){mosquito.add(new Mosquito(BitmapFactory.decodeResource(getResources(), R.drawable.mosquito), 24, 24, 2));}
 
                 //Adds bumblebees after one minute!
-                if (time > 1800){bumblebee.add(new Bumblebee(BitmapFactory.decodeResource(getResources(), R.drawable.bumblebee), 48, 48, 2));}
-                //Adds mosquitoes after two minutes!
-                if (time > 3600){mosquito.add(new Mosquito(BitmapFactory.decodeResource(getResources(), R.drawable.mosquito), 24, 24, 2));}
+                if (time > 1350){bumblebee.add(new Bumblebee(BitmapFactory.decodeResource(getResources(), R.drawable.bumblebee), 48, 48, 2));}
+
             }
 
         //Loop through every smoke
@@ -311,7 +314,7 @@ public class GamePanel extends SurfaceView implements SurfaceHolder.Callback
 
                 if (flies.get(i).x < flyswatter.get(0).x + 64 && flies.get(i).x > flyswatter.get(0).x - 64
                         && flies.get(i).y < flyswatter.get(0).y + 64 && flies.get(i).y > flyswatter.get(0).y - 64 && flyswatterSwat == true) {
-                    squash.add(new Squash(BitmapFactory.decodeResource(getResources(), R.drawable.fly1_squash), 32, 32, 1, flies.get(i).x, flies.get(i).y));
+                    squash.add(new Squash(BitmapFactory.decodeResource(getResources(), R.drawable.fly1_squash), 48, 32, 1, flies.get(i).x, flies.get(i).y));
                     showscore.add(new ShowScore(BitmapFactory.decodeResource(getResources(), R.drawable.score10), 48, 48, 20, flies.get(i).x, flies.get(i).y));
                     flies.remove(i);
                     score += 10;
