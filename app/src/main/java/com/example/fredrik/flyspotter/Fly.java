@@ -4,7 +4,6 @@ package com.example.fredrik.flyspotter;
         import android.graphics.Canvas;
 
 
-
 /**
  * Created by Fredrik on 24.11.2015.
  */
@@ -14,10 +13,9 @@ public class Fly extends GameObject
     private Animation animation = new Animation();
 
     //Create the random number, for the x axis.
-    int randomNum = (int) Math.ceil(Math.random() * 256);
+    int randomNum = (int) Math.ceil(Math.random() * 352);
     int randomNum2 = (int) Math.ceil(Math.random() * 48);
-    //Create a random number for speed, between 2 - 2.5!
-    float speed = (float) Math.ceil(Math.random() * 0.5) + 2;
+    double speed = 2;
 
 
 
@@ -50,7 +48,7 @@ public class Fly extends GameObject
     {
 
         //Make the flies change direction randomly.
-        if (y > randomNum - 50) {
+        if (y > randomNum - 200) {
             //Make the flies fly to the cake!
             if (x <= 160 - randomNum2) {
                 x++;

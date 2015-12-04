@@ -3,6 +3,8 @@ package com.example.fredrik.flyspotter;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 
+import java.util.Random;
+
 /**
  * Created by Fredrik on 03.12.2015.
  */
@@ -10,13 +12,13 @@ public class Bumblebee extends GameObject {
 
     private Bitmap spritesheet;
     private Animation animation = new Animation();
+    Random random = new Random();
 
     //Create the random number, for the x axis.
-    int randomNum = (int) Math.ceil(Math.random() * 256);
+    int randomNum = (int) Math.ceil(Math.random() * 336);
     int randomNum2 = (int) Math.ceil(Math.random() * 48);
     int randomNum3 = (int) Math.ceil(Math.random() * 100) + 200;
-    //Create a random number for speed, between 1 - 2!
-    float speed = (float) Math.ceil(Math.random() * 1) + 1;
+    double speed = 1.5;
     int lives = 2;
     int newspeed = 0;
 
@@ -61,9 +63,9 @@ public class Bumblebee extends GameObject {
             }
         }
         //The bumblebee becomes faster if it has one life left!
-        if (lives < 2){newspeed = 1;}
+        if (lives < 2){newspeed = 2;}
         //speed
-        y+=speed + newspeed;
+        y += speed + newspeed;
 
         animation.update();
 

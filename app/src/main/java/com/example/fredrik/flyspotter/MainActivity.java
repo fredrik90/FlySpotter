@@ -3,6 +3,8 @@ package com.example.fredrik.flyspotter;
 // https://www.youtube.com/watch?v=-XOMJYZmfkw
 
 import android.app.Activity;
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
@@ -10,8 +12,6 @@ import android.view.WindowManager;
 
 
 public class MainActivity extends Activity {
-
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

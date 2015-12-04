@@ -1,6 +1,8 @@
 package com.example.fredrik.flyspotter;
 
 import android.app.Activity;
+import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
@@ -19,7 +21,9 @@ public class GameOver extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        String scoreValue = getIntent().getExtras().getString("Score");
+        //Get the latest score!
+        Intent intent = getIntent();
+        int scoreValue = intent.getIntExtra("Score", 0);
 
         //Turn title off
         requestWindowFeature(Window.FEATURE_NO_TITLE);
@@ -28,10 +32,11 @@ public class GameOver extends Activity {
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
         setContentView(R.layout.game_over);
-        System.out.println(scoreValue);
 
+        //Show the latest score!
         TextView t = (TextView) findViewById(R.id.getScore);
         t.setText(String.valueOf(scoreValue));
+        t.setTextColor(Color.parseColor("#0000FF"));
     }
 
 

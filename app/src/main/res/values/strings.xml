@@ -5,4 +5,5 @@
     <string name="btnRetryGame">Retry</string>
     <string name="btnExitGame">Exit</string>
     <string name="gameoverText">Game Over</string>
+    <string name="yourscoreText">Your Score:</string>
 </resources>
