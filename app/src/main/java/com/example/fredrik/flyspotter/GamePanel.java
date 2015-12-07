@@ -330,7 +330,7 @@ public class GamePanel extends SurfaceView implements SurfaceHolder.Callback
                 }
 
 
-            if(collision(flies.get(i), cake))
+            if(collision(flies.get(i), cake) && flies.get(i).y > cake.y+32)
             {
                 //Remove the flies, when colliding with the cake!
                 smokes.add(new Smoke(BitmapFactory.decodeResource(getResources(), R.drawable.smoke), 64, 64, 8, flies.get(i).x - 16, flies.get(i).y));
@@ -367,7 +367,7 @@ public class GamePanel extends SurfaceView implements SurfaceHolder.Callback
                 }
 
 
-            if(collision(bumblebee.get(i), cake))
+            if(collision(bumblebee.get(i), cake) && bumblebee.get(i).y > cake.y+32)
             {
                 //Remove the flies, when colliding with the cake!
                 smokes.add(new Smoke(BitmapFactory.decodeResource(getResources(), R.drawable.smoke), 64, 64, 8, bumblebee.get(i).x - 16, bumblebee.get(i).y));
@@ -397,7 +397,7 @@ public class GamePanel extends SurfaceView implements SurfaceHolder.Callback
             }
 
 
-            if(collision(mosquito.get(i), cake))
+            if(collision(mosquito.get(i), cake) && mosquito.get(i).y > cake.y+32)
             {
                 //Remove the flies, when colliding with the cake!
                 smokes.add(new Smoke(BitmapFactory.decodeResource(getResources(), R.drawable.smoke), 64, 64, 8, mosquito.get(i).x - 16, mosquito.get(i).y));
