@@ -26,6 +26,12 @@
             android:label="Game Over"
             android:theme="@style/AppTheme" />
 
+        <activity
+            android:screenOrientation="portrait"
+            android:name=".HighScores"
+            android:label="Highscores"
+            android:theme="@style/AppTheme" />
+
     </application>
 
 </manifest>

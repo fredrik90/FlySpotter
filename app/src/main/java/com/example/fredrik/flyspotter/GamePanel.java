@@ -32,6 +32,8 @@ public class GamePanel extends SurfaceView implements SurfaceHolder.Callback
     public int timer;
     private MainThread thread;
     private Background bg;
+    private Background2 bg2;
+    private Background2 bg3;
     private Cake cake;
     private int lives;
     private int cakeanimation1;
@@ -121,8 +123,15 @@ public class GamePanel extends SurfaceView implements SurfaceHolder.Callback
         cakeanimation4 = 1;
         cakeanimation5 = 1;
 
+        //Sky background
+        bg3 = new Background2(BitmapFactory.decodeResource(getResources(), R.drawable.background3));
+        //Cloud background
         bg = new Background(BitmapFactory.decodeResource(getResources(), R.drawable.background1));
-        cake = new Cake(BitmapFactory.decodeResource(getResources(), R.drawable.cake), 128, 96, 3);
+        //Background move speed
+        bg.setVector(-1);
+        //Second background
+        bg2 = new Background2(BitmapFactory.decodeResource(getResources(), R.drawable.background2));
+        cake = new Cake(BitmapFactory.decodeResource(getResources(), R.drawable.cake), 128, 87, 4);
         flies = new ArrayList<>();
         bumblebee = new ArrayList<>();
         mosquito = new ArrayList<>();
@@ -186,37 +195,36 @@ public class GamePanel extends SurfaceView implements SurfaceHolder.Callback
         }
 
 
-        if (gameovertimer >= 25) {
+        if (gameovertimer >= 40) {
             //Game over, starts the game over activity
             Intent intent = new Intent(mContext, GameOver.class);
             intent.putExtra("Score", score);
-
+            //Close this activity
             intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | IntentCompat.FLAG_ACTIVITY_CLEAR_TASK);
-
             mContext.startActivity(intent);
         }
 
         //Make the cake change, depending on your lives!
         //And add smoke
         if (lives == 4 && cakeanimation1 == 1){
-                cake = new Cake(BitmapFactory.decodeResource(getResources(), R.drawable.cake2), 128, 96, 3);
+                cake = new Cake(BitmapFactory.decodeResource(getResources(), R.drawable.cake2), 128, 87, 4);
                 cakeanimation1 = 0;}
 
         if (lives == 3 && cakeanimation2 == 1){
-            cake = new Cake(BitmapFactory.decodeResource(getResources(), R.drawable.cake3), 128, 96, 3);
+            cake = new Cake(BitmapFactory.decodeResource(getResources(), R.drawable.cake3), 128, 87, 1);
             cakeanimation2 = 0;}
 
         if (lives == 2 && cakeanimation3 == 1){
-            cake = new Cake(BitmapFactory.decodeResource(getResources(), R.drawable.cake4), 128, 96, 3);
+            cake = new Cake(BitmapFactory.decodeResource(getResources(), R.drawable.cake4), 128, 87, 1);
             cakeanimation3 = 0;}
 
         if (lives == 1 && cakeanimation4 == 1){
-            cake = new Cake(BitmapFactory.decodeResource(getResources(), R.drawable.cake5), 128, 96, 1);
+            cake = new Cake(BitmapFactory.decodeResource(getResources(), R.drawable.cake5), 128, 87, 1);
             cakeanimation4 = 0;
         }
 
         if (lives <= 0 && cakeanimation5 == 1){
-            cake = new Cake(BitmapFactory.decodeResource(getResources(), R.drawable.dish), 128, 96, 1);
+            cake = new Cake(BitmapFactory.decodeResource(getResources(), R.drawable.dish), 128, 87, 1);
             cakeanimation5 = 0;
         }
 
@@ -400,47 +408,56 @@ public class GamePanel extends SurfaceView implements SurfaceHolder.Callback
             }
         }
 
-            if (lives <= 0){flyswattermove = 0;}
-
-            //Sets up the ontouch position, and the original position
-            double theta = Math.atan2(ypos - flyswatter.get(0).y, xpos - flyswatter.get(0).x);
-            double theta2 = Math.atan2(334 - flyswatter.get(0).y, 256 - flyswatter.get(0).x);
-            //Update the flyswatter
-            flyswatter.get(0).update();
-
-            //When the flyswatter reach the ontouch position, it will go back to its original place!
-            if (flyswatter.get(0).x < xpos + 21 && flyswatter.get(0).x > xpos - 21
-                    && flyswatter.get(0).y < ypos + 21 && flyswatter.get(0).y > ypos - 21 && flyswattermove == 1) {
+        //Make the flyswatter disappear when you loose all your lives!
+            if (lives <= 0){
                 flyswattermove = 0;
-                //The enemies can only be squashed when this variable is true, it will prevent
-                //the flyswatter to swat the enemies all the time when it go through them, this
-                //gives the illusion that you actually swat them!
-                flyswatterSwat = true;
-                swatswitch = 0;
-            }
-            //Sets the flyswatter to a given place, when its nearby, and on its way back!
-            if (flyswatter.get(0).x < 354 && flyswatter.get(0).x > 236
-                    && flyswatter.get(0).y < 354 && flyswatter.get(0).y > 314 && flyswattermove == 0) {
-                flyswatter.get(0).x = 256;
-                flyswatter.get(0).y = 334;
-                flyswattermove = 2;
-                flyswatterSwitch = false;
-            }
-            //Move the flyswatter to ontouch position
-            if (flyswattermove == 1){
-            flyswatter.get(0).x += 40 * Math.cos(theta);
-            flyswatter.get(0).y += 40 * Math.sin(theta);
-            }
-            //Move the flyswatter back!
-            if (flyswattermove == 0){
-                flyswatter.get(0).x += 40 * Math.cos(theta2);
-                flyswatter.get(0).y += 40 * Math.sin(theta2);
-
-                if (swatswitch >= 1){flyswatterSwat = false;}
-
+                flyswatter.get(0).y += 10;
             }
 
-        swatswitch++;
+            if (lives >= 1) {
+
+                //Sets up the ontouch position, and the original position
+                double theta = Math.atan2(ypos - flyswatter.get(0).y, xpos - flyswatter.get(0).x);
+                double theta2 = Math.atan2(334 - flyswatter.get(0).y, 256 - flyswatter.get(0).x);
+                //Update the flyswatter
+                flyswatter.get(0).update();
+
+                //When the flyswatter reach the ontouch position, it will go back to its original place!
+                if (flyswatter.get(0).x < xpos + 21 && flyswatter.get(0).x > xpos - 21
+                        && flyswatter.get(0).y < ypos + 21 && flyswatter.get(0).y > ypos - 21 && flyswattermove == 1) {
+                    flyswattermove = 0;
+                    //The enemies can only be squashed when this variable is true, it will prevent
+                    //the flyswatter to swat the enemies all the time when it go through them, this
+                    //gives the illusion that you actually swat them!
+                    flyswatterSwat = true;
+                    swatswitch = 0;
+                }
+                //Sets the flyswatter to a given place, when its nearby, and on its way back!
+                if (flyswatter.get(0).x < 354 && flyswatter.get(0).x > 236
+                        && flyswatter.get(0).y < 354 && flyswatter.get(0).y > 314 && flyswattermove == 0) {
+                    flyswatter.get(0).x = 256;
+                    flyswatter.get(0).y = 334;
+                    flyswattermove = 2;
+                    flyswatterSwitch = false;
+                }
+                //Move the flyswatter to ontouch position
+                if (flyswattermove == 1) {
+                    flyswatter.get(0).x += 40 * Math.cos(theta);
+                    flyswatter.get(0).y += 40 * Math.sin(theta);
+                }
+                //Move the flyswatter back!
+                if (flyswattermove == 0) {
+                    flyswatter.get(0).x += 40 * Math.cos(theta2);
+                    flyswatter.get(0).y += 40 * Math.sin(theta2);
+
+                    if (swatswitch >= 1) {
+                        flyswatterSwat = false;
+                    }
+
+                }
+
+                swatswitch++;
+            }
 
     }
 
@@ -467,7 +484,9 @@ public class GamePanel extends SurfaceView implements SurfaceHolder.Callback
         {
             final int savedState = canvas.save();
             canvas.scale(scaleFactorX, scaleFactorY);
+            bg3.draw(canvas);
             bg.draw(canvas);
+            bg2.draw(canvas);
             cake.draw(canvas);
 
             //draw flies

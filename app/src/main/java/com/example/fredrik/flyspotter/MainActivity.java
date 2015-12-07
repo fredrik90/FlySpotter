@@ -4,6 +4,7 @@ package com.example.fredrik.flyspotter;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
@@ -33,6 +34,13 @@ public class MainActivity extends Activity {
         setContentView(new GamePanel(this));
         //startActivity(new Intent(getApplicationContext(), GameOver.class));
     }
+
+    //Highscore
+    public void ClickHighScore(View view) {
+        Intent intent = new Intent(this, HighScores.class);
+        startActivity(intent);
+    }
+
     //Exit Game
     public void ClickExitGame(View view) {
         System.exit(0);

@@ -1,6 +1,6 @@
 package com.example.fredrik.flyspotter;
 
-import android.content.Context;
+import android.app.Activity;
 import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -11,16 +11,21 @@ import android.widget.TextView;
 /**
  * Created by Fredrik on 04.12.2015.
  */
-public class HighScores extends GameOver {
-    public static final String PREFS_NAME = "FlySpotterPref";
+public class HighScores extends Activity {
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        SharedPreferences prefs = getSharedPreferences(PREFS_NAME, MODE_PRIVATE);
+        //Get the SharedPreferences, and it can only be accessed in this app!
+        SharedPreferences sharedPref = getSharedPreferences("HighScores", MODE_PRIVATE);
+        //Get the value
+        String scoretest = sharedPref.getString("HighScorePref", "0");
 
-        String value = prefs.getString("HighScore", "");
+
+
 
         //Turn title off
         requestWindowFeature(Window.FEATURE_NO_TITLE);
@@ -32,8 +37,10 @@ public class HighScores extends GameOver {
 
         //Show the latest score!
         TextView t = (TextView) findViewById(R.id.score1);
-        t.setText(String.valueOf(value));
+        t.setText(String.valueOf(scoretest));
         t.setTextColor(Color.parseColor("#0000FF"));
+
+
 
     }
 

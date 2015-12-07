@@ -29,7 +29,7 @@ public class Cake extends GameObject
         }
 
         animation.setFrames(image);
-        animation.setDelay(85);
+        animation.setDelay(60);
     }
 
     public void update()
@@ -42,6 +42,7 @@ public class Cake extends GameObject
     {
         canvas.drawBitmap(animation.getImage(), x, y, null);
     }
+
 
 
 }

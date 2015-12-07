@@ -7,4 +7,5 @@
     <string name="btnStartGame">Start Game</string>
     <string name="gameoverText">Game Over</string>
     <string name="yourscoreText">Your Score</string>
+    <string name="highscoreText">Highscores</string>
 </resources>
