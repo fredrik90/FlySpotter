@@ -39,7 +39,7 @@ public class GameOver extends Activity {
         int scoreValue = intent.getIntExtra("Score", 0);
         String ScoreString = Integer.toString(scoreValue);
 
-        DateFormat dateForm = new SimpleDateFormat("dd MMMM yyyy");
+        DateFormat dateForm = new SimpleDateFormat("dd MMM yy");
         String dateOutput = dateForm.format(new Date());
 
 

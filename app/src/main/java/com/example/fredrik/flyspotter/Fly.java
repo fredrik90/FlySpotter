@@ -48,13 +48,13 @@ public class Fly extends GameObject
     {
 
         //Make the flies change direction randomly.
-        if (y > randomNum - 200) {
+        if (y > randomNum - 150) {
             //Make the flies fly to the cake!
             if (x <= 160 - randomNum2) {
-                x += 2;
+                x += 4;
             }
             if (x >= 160 + randomNum2) {
-                x -= 2;
+                x -= 4;
             }
         }
         //speed

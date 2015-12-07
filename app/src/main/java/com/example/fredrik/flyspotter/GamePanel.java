@@ -167,10 +167,12 @@ public class GamePanel extends SurfaceView implements SurfaceHolder.Callback
                 ypos = get_ypos * HEIGHT / Checkheight;
 
                 //This will make you wait for the flyswatter, so you only can swat again after the flyswatter are back on its original place!
-
+                //And you cant swat too low, or else you could spam on the cake, and never loose!
+                if (ypos < 330){
                 if (flyswatterSwitch == false){
                     flyswattermove = 1;
                     flyswatterSwitch = true;}
+                }
 
                 break;
             }
