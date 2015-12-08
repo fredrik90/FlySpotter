@@ -10,7 +10,9 @@ public class Squash extends GameObject
 {
     private Bitmap spritesheet;
     private Animation animation = new Animation();
-    float speed = 0;
+    int speed = 0;
+    //stop is for making the fly squash stop midair for a moment!
+    int stop = 0;
 
     public Squash(Bitmap res, int w, int h, int numFrames, int x, int y)
     {
@@ -35,11 +37,15 @@ public class Squash extends GameObject
 
     public void update()
     {
-            speed += 0.75;
+            stop++;
 
             animation.update();
 
-            y+=speed;
+            y += speed;
+
+        if (stop > 7) {
+            speed += 2;
+        }
 
     }
 

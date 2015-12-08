@@ -6,5 +6,7 @@
     <string name="btnExitGame">Exit</string>
     <string name="gameoverText">Game Over</string>
     <string name="yourscoreText">Your Score:</string>
-    <string name="highscoreText">Highscores</string>
+    <string name="highscoreText">Your Highscores</string>
+    <string name="EmptyScore">No Score</string>
+    <string name="Back">Back</string>
 </resources>

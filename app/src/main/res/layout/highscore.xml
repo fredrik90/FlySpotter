@@ -2,8 +2,8 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:weightSum="1">
-
+    android:weightSum="1"
+    android:background="#500000">
 
     <TextView
         android:layout_width="wrap_content"
@@ -16,9 +16,9 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="60dp"
+        android:layout_marginTop="40dp"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="Score1"
+        android:text="@string/EmptyScore"
         android:id="@+id/score1"
         android:layout_gravity="center_horizontal" />
 
@@ -27,11 +27,90 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="Score2"
+        android:text="@string/EmptyScore"
         android:id="@+id/score2"
         android:layout_gravity="center_horizontal" />
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="@string/EmptyScore"
+        android:id="@+id/score3"
+        android:layout_gravity="center_horizontal" />
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="@string/EmptyScore"
+        android:id="@+id/score4"
+        android:layout_gravity="center_horizontal" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="@string/EmptyScore"
+        android:id="@+id/score5"
+        android:layout_gravity="center_horizontal" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="@string/EmptyScore"
+        android:id="@+id/score6"
+        android:layout_gravity="center_horizontal" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="@string/EmptyScore"
+        android:id="@+id/score7"
+        android:layout_gravity="center_horizontal" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="@string/EmptyScore"
+        android:id="@+id/score8"
+        android:layout_gravity="center_horizontal" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="@string/EmptyScore"
+        android:id="@+id/score9"
+        android:layout_gravity="center_horizontal" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="@string/EmptyScore"
+        android:id="@+id/score10"
+        android:layout_gravity="center_horizontal" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:text="@string/Back"
+        android:onClick="ClickBack"
+        android:id="@+id/BackButton"
+        android:layout_gravity="center_horizontal" />
 
 
 </LinearLayout>

@@ -7,5 +7,7 @@
     <string name="btnStartGame">Start Spill</string>
     <string name="gameoverText">Du Tapte!</string>
     <string name="yourscoreText">Dine Poeng</string>
-    <string name="highscoreText">Rekorder</string>
+    <string name="highscoreText">Dine Rekorder</string>
+    <string name="EmptyScore">Ingen Rekord</string>
+    <string name="Back">Tilbake</string>
 </resources>

@@ -34,6 +34,7 @@ public class GamePanel extends SurfaceView implements SurfaceHolder.Callback
     private Background bg;
     private Background2 bg2;
     private Background2 bg3;
+    private Background2 bg4;
     private Cake cake;
     private int lives;
     private int cakeanimation1;
@@ -42,6 +43,7 @@ public class GamePanel extends SurfaceView implements SurfaceHolder.Callback
     private int cakeanimation4;
     private int cakeanimation5;
     int flyswattermove = 0;
+    int swatrester = 10;
     boolean flyswatterSwat;
     boolean flyswatterSwitch = false;
     public int score;
@@ -131,6 +133,8 @@ public class GamePanel extends SurfaceView implements SurfaceHolder.Callback
         bg.setVector(-1);
         //Second background
         bg2 = new Background2(BitmapFactory.decodeResource(getResources(), R.drawable.background2));
+        //glass in windows
+        bg4 = new Background2(BitmapFactory.decodeResource(getResources(), R.drawable.glass));
         cake = new Cake(BitmapFactory.decodeResource(getResources(), R.drawable.cake), 128, 87, 4);
         flies = new ArrayList<>();
         bumblebee = new ArrayList<>();
@@ -167,11 +171,14 @@ public class GamePanel extends SurfaceView implements SurfaceHolder.Callback
                 ypos = get_ypos * HEIGHT / Checkheight;
 
                 //This will make you wait for the flyswatter, so you only can swat again after the flyswatter are back on its original place!
-                //And you cant swat too low, or else you could spam on the cake, and never loose!
-                if (ypos < 330){
+                //And you must wait for the swatrester, when you swat to a close position, it goes very fast! The swatrester prevents the user
+                //to spam the cake very fast, and never loose the game!
+                if (swatrester >= 10){
                 if (flyswatterSwitch == false){
                     flyswattermove = 1;
-                    flyswatterSwitch = true;}
+                    flyswatterSwitch = true;
+                    swatrester = 0;
+                }
                 }
 
                 break;
@@ -197,7 +204,7 @@ public class GamePanel extends SurfaceView implements SurfaceHolder.Callback
         }
 
 
-        if (gameovertimer >= 40) {
+        if (gameovertimer == 40) {
             //Game over, starts the game over activity
             Intent intent = new Intent(mContext, GameOver.class);
             intent.putExtra("Score", score);
@@ -409,6 +416,8 @@ public class GamePanel extends SurfaceView implements SurfaceHolder.Callback
                 break;
             }
         }
+        //Make it so you can swat again!
+        if (swatrester < 10){swatrester++;}
 
         //Make the flyswatter disappear when you loose all your lives!
             if (lives <= 0){
@@ -489,6 +498,7 @@ public class GamePanel extends SurfaceView implements SurfaceHolder.Callback
             bg3.draw(canvas);
             bg.draw(canvas);
             bg2.draw(canvas);
+            bg4.draw(canvas);
             cake.draw(canvas);
 
             //draw flies

@@ -15,7 +15,7 @@ public class Fly extends GameObject
     //Create the random number, for the x axis.
     int randomNum = (int) Math.ceil(Math.random() * 352);
     int randomNum2 = (int) Math.ceil(Math.random() * 48);
-    double speed = 2;
+    int speed = 2;
 
 
 
@@ -58,7 +58,7 @@ public class Fly extends GameObject
             }
         }
         //speed
-        y+=speed;
+        y += speed;
 
         animation.update();
 

@@ -18,7 +18,7 @@ public class Bumblebee extends GameObject {
     int randomNum = (int) Math.ceil(Math.random() * 336);
     int randomNum2 = (int) Math.ceil(Math.random() * 48);
     int randomNum3 = (int) Math.ceil(Math.random() * 100) + 200;
-    double speed = 1.5;
+    int speed = 1;
     int lives = 2;
     int newspeed = 0;
     int shake = 1;
