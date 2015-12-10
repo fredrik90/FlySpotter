@@ -42,6 +42,10 @@ public class MainActivity extends Activity {
     public void ClickStartGame(View view) {
         //Sets to gamepanel!
         setContentView(new GamePanel(this));
+        MediaPlayer background;
+        background = MediaPlayer.create(MainActivity.this, R.raw.background);
+        background.setLooping(true);
+        background.start();
     }
 
 
