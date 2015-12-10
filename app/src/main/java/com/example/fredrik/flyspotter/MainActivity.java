@@ -28,12 +28,10 @@ public class MainActivity extends Activity {
 
         setContentView(R.layout.activity_main);
 
-        //sets up intro music
         MediaPlayer intromusic;
         intromusic = MediaPlayer.create(MainActivity.this, R.raw.introfly);
         intromusic.setLooping(true);
         intromusic.start();
-
     }
     //Start Game
     public void ClickStartGame(View view) {
