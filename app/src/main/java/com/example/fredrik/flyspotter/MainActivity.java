@@ -7,9 +7,11 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.media.MediaPlayer;
 
 
 public class MainActivity extends Activity {
@@ -25,15 +27,18 @@ public class MainActivity extends Activity {
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
         setContentView(R.layout.activity_main);
+
+        MediaPlayer intromusic;
+        intromusic = MediaPlayer.create(MainActivity.this, R.raw.introfly);
+        intromusic.setLooping(true);
+        intromusic.start();
     }
-
-
-
     //Start Game
     public void ClickStartGame(View view) {
         setContentView(new GamePanel(this));
-        //startActivity(new Intent(getApplicationContext(), GameOver.class));
+    //startActivity(new Intent(getApplicationContext(), GameOver.class));
     }
+
 
     //Highscore
     public void ClickHighScore(View view) {

@@ -14,7 +14,7 @@ public class Cake extends GameObject
     public Cake(Bitmap res, int w, int h, int numFrames)
     {
         x = 128;
-        y = 334;
+        y = 332;
         dy = 0;
         height = h;
         width = w;

@@ -12,7 +12,7 @@ import android.support.v4.content.IntentCompat;
 import android.view.MotionEvent;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
-
+import android.media.MediaPlayer;
 import java.util.ArrayList;
 
 
@@ -23,6 +23,8 @@ import java.util.ArrayList;
 
 public class GamePanel extends SurfaceView implements SurfaceHolder.Callback
 {
+
+
     public static final int WIDTH = 384;
     public static final int HEIGHT = 430;
     public double xpos;
@@ -34,6 +36,7 @@ public class GamePanel extends SurfaceView implements SurfaceHolder.Callback
     private Background bg;
     private Background2 bg2;
     private Background2 bg3;
+    private Background2 bg4;
     private Cake cake;
     private int lives;
     private int cakeanimation1;
@@ -42,6 +45,8 @@ public class GamePanel extends SurfaceView implements SurfaceHolder.Callback
     private int cakeanimation4;
     private int cakeanimation5;
     int flyswattermove = 0;
+    int swatrester = 10;
+    int setswatrester = 10;
     boolean flyswatterSwat;
     boolean flyswatterSwitch = false;
     public int score;
@@ -58,6 +63,9 @@ public class GamePanel extends SurfaceView implements SurfaceHolder.Callback
     private Context mContext;
     int Checkwidth = this.getResources().getDisplayMetrics().widthPixels;
     int Checkheight = this.getResources().getDisplayMetrics().heightPixels;
+
+
+
 
 
 
@@ -131,6 +139,8 @@ public class GamePanel extends SurfaceView implements SurfaceHolder.Callback
         bg.setVector(-1);
         //Second background
         bg2 = new Background2(BitmapFactory.decodeResource(getResources(), R.drawable.background2));
+        //glass in windows
+        bg4 = new Background2(BitmapFactory.decodeResource(getResources(), R.drawable.glass));
         cake = new Cake(BitmapFactory.decodeResource(getResources(), R.drawable.cake), 128, 87, 4);
         flies = new ArrayList<>();
         bumblebee = new ArrayList<>();
@@ -145,6 +155,7 @@ public class GamePanel extends SurfaceView implements SurfaceHolder.Callback
         //Start the game loop
         thread.setRunning(true);
         thread.start();
+
 
 
     }
@@ -167,11 +178,17 @@ public class GamePanel extends SurfaceView implements SurfaceHolder.Callback
                 ypos = get_ypos * HEIGHT / Checkheight;
 
                 //This will make you wait for the flyswatter, so you only can swat again after the flyswatter are back on its original place!
-                //And you cant swat too low, or else you could spam on the cake, and never loose!
-                if (ypos < 330){
+                //And you must wait for the swatrester, when you swat to a close position, it goes very fast! The swatrester prevents the user
+                //to spam the cake very fast, and never loose the game! And how higher the setswatrester is, how longer you have to wait until
+                //you can swat again, so if you swat near the cake the rest time is greater!
+                if (swatrester >= setswatrester){
                 if (flyswatterSwitch == false){
                     flyswattermove = 1;
-                    flyswatterSwitch = true;}
+                    flyswatterSwitch = true;
+                    swatrester = 0;
+                    if (ypos < 320){setswatrester = 10;}
+                    if (ypos > 320){setswatrester = 18;}
+                }
                 }
 
                 break;
@@ -197,7 +214,7 @@ public class GamePanel extends SurfaceView implements SurfaceHolder.Callback
         }
 
 
-        if (gameovertimer >= 40) {
+        if (gameovertimer == 40) {
             //Game over, starts the game over activity
             Intent intent = new Intent(mContext, GameOver.class);
             intent.putExtra("Score", score);
@@ -332,7 +349,7 @@ public class GamePanel extends SurfaceView implements SurfaceHolder.Callback
                 }
 
 
-            if(collision(flies.get(i), cake) && flies.get(i).y > cake.y+32)
+            if(collision(flies.get(i), cake) && flies.get(i).y > cake.y+24)
             {
                 //Remove the flies, when colliding with the cake!
                 smokes.add(new Smoke(BitmapFactory.decodeResource(getResources(), R.drawable.smoke), 64, 64, 8, flies.get(i).x - 16, flies.get(i).y));
@@ -369,7 +386,7 @@ public class GamePanel extends SurfaceView implements SurfaceHolder.Callback
                 }
 
 
-            if(collision(bumblebee.get(i), cake) && bumblebee.get(i).y > cake.y+32)
+            if(collision(bumblebee.get(i), cake) && bumblebee.get(i).y > cake.y+24)
             {
                 //Remove the flies, when colliding with the cake!
                 smokes.add(new Smoke(BitmapFactory.decodeResource(getResources(), R.drawable.smoke), 64, 64, 8, bumblebee.get(i).x - 16, bumblebee.get(i).y));
@@ -399,7 +416,7 @@ public class GamePanel extends SurfaceView implements SurfaceHolder.Callback
             }
 
 
-            if(collision(mosquito.get(i), cake) && mosquito.get(i).y > cake.y+32)
+            if(collision(mosquito.get(i), cake) && mosquito.get(i).y > cake.y+24)
             {
                 //Remove the flies, when colliding with the cake!
                 smokes.add(new Smoke(BitmapFactory.decodeResource(getResources(), R.drawable.smoke), 64, 64, 8, mosquito.get(i).x - 16, mosquito.get(i).y));
@@ -409,6 +426,8 @@ public class GamePanel extends SurfaceView implements SurfaceHolder.Callback
                 break;
             }
         }
+        //Make it so you can swat again!
+        if (swatrester < setswatrester){swatrester++;}
 
         //Make the flyswatter disappear when you loose all your lives!
             if (lives <= 0){
@@ -447,6 +466,7 @@ public class GamePanel extends SurfaceView implements SurfaceHolder.Callback
                     flyswatter.get(0).x += 40 * Math.cos(theta);
                     flyswatter.get(0).y += 40 * Math.sin(theta);
                 }
+
                 //Move the flyswatter back!
                 if (flyswattermove == 0) {
                     flyswatter.get(0).x += 40 * Math.cos(theta2);
@@ -482,6 +502,7 @@ public class GamePanel extends SurfaceView implements SurfaceHolder.Callback
         final float scaleFactorX = getWidth()/(WIDTH*1.f);
         final float scaleFactorY = getHeight()/(HEIGHT*1.f);
 
+
         if(canvas!=null)
         {
             final int savedState = canvas.save();
@@ -489,24 +510,37 @@ public class GamePanel extends SurfaceView implements SurfaceHolder.Callback
             bg3.draw(canvas);
             bg.draw(canvas);
             bg2.draw(canvas);
+            bg4.draw(canvas);
             cake.draw(canvas);
 
             //draw flies
             for(Fly f: flies)
             {
+                canvas.save();
+                //Rotate sprite
+                canvas.rotate(f.rotate, (f.x + 16), (f.y + 16));
                 f.draw(canvas);
+                canvas.restore();
             }
 
             //draw bumblebees
             for(Bumblebee b: bumblebee)
             {
+                canvas.save();
+                //Rotate sprite
+                canvas.rotate(b.rotate, (b.x + 24), (b.y + 24));
                 b.draw(canvas);
+                canvas.restore();
             }
 
             //draw mosquitoes
             for(Mosquito m: mosquito)
             {
+                canvas.save();
+                //Rotate sprite
+                canvas.rotate(m.rotate, (m.x + 12), (m.y + 12));
                 m.draw(canvas);
+                canvas.restore();
             }
 
             //draw smokes

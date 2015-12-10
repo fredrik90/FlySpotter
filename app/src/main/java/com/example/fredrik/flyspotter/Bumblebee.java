@@ -12,22 +12,23 @@ public class Bumblebee extends GameObject {
 
     private Bitmap spritesheet;
     private Animation animation = new Animation();
-    Random random = new Random();
 
     //Create the random number, for the x axis.
     int randomNum = (int) Math.ceil(Math.random() * 336);
     int randomNum2 = (int) Math.ceil(Math.random() * 48);
     int randomNum3 = (int) Math.ceil(Math.random() * 100) + 200;
-    double speed = 1.5;
+    int speed = 1;
     int lives = 2;
     int newspeed = 0;
     int shake = 1;
+    //Rotate is the rotation angle of the bumblebees!
+    int rotate = 0;
 
 
 
     public Bumblebee(Bitmap res, int w, int h, int numFrames)
     {
-        //Spawning in random x axis, from a number from 0 - 256!
+        //Spawning in random x axis, from a number from 0 - 336!
         x = randomNum;
         //Spawning outside the screen!
         y = -64;
@@ -56,12 +57,28 @@ public class Bumblebee extends GameObject {
         //Make the flies change direction randomly.
         if (y > randomNum3) {
             //Make the flies fly to the cake!
-            if (x <= 160 - randomNum2) {
+            if (x <= 159 - randomNum2) {
                 x += 6;
+                rotate -= 5;
+                //cap rotation
+                if (rotate <= -45){rotate = -45;}
+            }else{
+                //rotate back
+                if (rotate < 0){rotate += 5;}
             }
-            if (x >= 160 + randomNum2) {
+
+
+            if (x >= 161 + randomNum2) {
                 x -= 6;
+                rotate += 5;
+                //cap rotation
+                if (rotate >= 45){rotate = 45;}
+            }else{
+                //rotate back
+                if (rotate > 0){rotate -= 5;}
             }
+
+
         }
         //The bumblebee becomes faster if it has one life left, and shakes!
         if (lives < 2){
