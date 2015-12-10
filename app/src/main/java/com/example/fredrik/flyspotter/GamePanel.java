@@ -26,6 +26,7 @@ public class GamePanel extends SurfaceView implements SurfaceHolder.Callback
 {
     SoundPool sounds; //found at www.freesound.org//
     int ding;
+    int woosh;
 
     public static final int WIDTH = 384;
     public static final int HEIGHT = 430;
@@ -82,13 +83,14 @@ public class GamePanel extends SurfaceView implements SurfaceHolder.Callback
 
         //make gamePanel focusable so it can handle events
         setFocusable(true);
-
+         //Sounds found at www.freesound.org
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP){
         //Set sounds!
         AudioAttributes audioA = new AudioAttributes.Builder().setContentType(AudioAttributes.CONTENT_TYPE_MUSIC)
                 .setUsage(AudioAttributes.USAGE_GAME).build();
         sounds = new SoundPool.Builder().setMaxStreams(10).setAudioAttributes(audioA).build();//(10, AudioManager.STREAM_MUSIC,0);
         ding = sounds.load(context, R.raw.ding2, 1);
+            woosh = sounds.load(context, R.raw.woosh, 2);
 
         }
 
@@ -193,6 +195,7 @@ public class GamePanel extends SurfaceView implements SurfaceHolder.Callback
                     swatrester = 0;
                     if (ypos < 320){setswatrester = 10;}
                     if (ypos > 320){setswatrester = 18;}
+                    sounds.play(woosh, 0.1f, 0.1f, 0, 0, 1.0f);
                 }
                 }
 
