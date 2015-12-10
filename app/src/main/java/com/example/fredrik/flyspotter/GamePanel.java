@@ -8,18 +8,22 @@ import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Rect;
 import android.graphics.Typeface;
+import android.media.AudioManager;
+import android.media.SoundPool;
 import android.support.v4.content.IntentCompat;
 import android.view.MotionEvent;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 import android.media.MediaPlayer;
 import java.util.ArrayList;
+import java.util.List;
 
 
 
 public class GamePanel extends SurfaceView implements SurfaceHolder.Callback
 {
-
+    private  SoundPool sounds;
+    private int ding;
 
     public static final int WIDTH = 384;
     public static final int HEIGHT = 430;
@@ -62,10 +66,6 @@ public class GamePanel extends SurfaceView implements SurfaceHolder.Callback
 
 
 
-
-
-
-
     //Constructor
     public GamePanel (Context context) {
 
@@ -82,6 +82,8 @@ public class GamePanel extends SurfaceView implements SurfaceHolder.Callback
         //make gamePanel focusable so it can handle events
         setFocusable(true);
 
+        sounds = new SoundPool(10, AudioManager.STREAM_MUSIC,0);
+        ding = sounds.load(context, R.raw.ding, 1);
 
     }
 
@@ -341,6 +343,7 @@ public class GamePanel extends SurfaceView implements SurfaceHolder.Callback
                     showscore.add(new ShowScore(BitmapFactory.decodeResource(getResources(), R.drawable.score10), 48, 48, 20, flies.get(i).x, flies.get(i).y));
                     flies.remove(i);
                     score += 10;
+                    sounds.play(ding, 1.0f, 1.0f, 0, 0, 1.0f);
                     break;
                 }
 
@@ -376,6 +379,7 @@ public class GamePanel extends SurfaceView implements SurfaceHolder.Callback
                         showscore.add(new ShowScore(BitmapFactory.decodeResource(getResources(), R.drawable.score20), 48, 48, 20, bumblebee.get(i).x, bumblebee.get(i).y));
                         bumblebee.remove(i);
                         score += 20;
+                        sounds.play(ding, 1.0f, 1.0f, 0, 0, 1.0f);
                         break;
                     }
                     flyswatterSwat = false;
@@ -408,6 +412,7 @@ public class GamePanel extends SurfaceView implements SurfaceHolder.Callback
                 showscore.add(new ShowScore(BitmapFactory.decodeResource(getResources(), R.drawable.score15), 48, 48, 20, mosquito.get(i).x, mosquito.get(i).y));
                 mosquito.remove(i);
                 score += 15;
+                sounds.play(ding, 1.0f, 1.0f, 0, 0, 1.0f);
                 break;
             }
 

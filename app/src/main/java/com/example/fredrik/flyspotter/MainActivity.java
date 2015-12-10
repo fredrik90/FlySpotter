@@ -37,6 +37,7 @@ public class MainActivity extends Activity {
     public void ClickStartGame(View view) {
         setContentView(new GamePanel(this));
     //startActivity(new Intent(getApplicationContext(), GameOver.class));
+
     }
 
 
