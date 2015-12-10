@@ -38,15 +38,7 @@ public class MainActivity extends Activity {
     //Start Game
     public void ClickStartGame(View view) {
         setContentView(new GamePanel(this));
-
     //startActivity(new Intent(getApplicationContext(), GameOver.class));
-    // sets up background music
-        MediaPlayer backgroundmusic;
-        backgroundmusic = MediaPlayer.create(MainActivity.this, R.raw.background);
-        backgroundmusic.setLooping(true);
-        backgroundmusic.start();
-
-
     }
 
 
