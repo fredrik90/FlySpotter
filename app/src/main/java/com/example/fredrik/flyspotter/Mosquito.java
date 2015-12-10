@@ -130,7 +130,7 @@ public class Mosquito extends GameObject {
             if (x >= 161 + randomNum2) {
                 x -= 5;
                 move = false;
-                rotate -= 5;
+                rotate += 5;
                 //cap rotation
                 if (rotate >= 45){rotate = 45;}
             }else{
