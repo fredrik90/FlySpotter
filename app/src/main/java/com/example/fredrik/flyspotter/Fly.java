@@ -13,15 +13,18 @@ public class Fly extends GameObject
     private Animation animation = new Animation();
 
     //Create the random number, for the x axis.
-    int randomNum = (int) Math.ceil(Math.random() * 352);
-    int randomNum2 = (int) Math.ceil(Math.random() * 48);
+    int randomNum = (int) Math.ceil(Math.random() * 336);
+    int randomNum2 = (int) Math.ceil(Math.random() * 32);
+    int randomNum3 = (int) Math.ceil(Math.random() * 100) + 200;
     int speed = 2;
+    //Rotate is the rotation angle of the flies!
+    int rotate = 0;
 
 
 
     public Fly(Bitmap res, int w, int h, int numFrames)
     {
-        //Spawning in random x axis, from a number from 0 - 256!
+        //Spawning in random x axis, from a number from 0 - 336!
         x = randomNum;
         //Spawning outside the screen!
         y = -32;
@@ -48,14 +51,28 @@ public class Fly extends GameObject
     {
 
         //Make the flies change direction randomly.
-        if (y > randomNum - 150) {
+        if (y > randomNum3) {
             //Make the flies fly to the cake!
-            if (x <= 160 - randomNum2) {
+            if (x <= 159 - randomNum2) {
                 x += 4;
+                rotate -= 1;
+                //cap rotation
+                if (rotate <= -25){rotate = -25;}
+            }else{
+                //rotate back
+                if (rotate < 0){rotate += 5;}
             }
-            if (x >= 160 + randomNum2) {
+
+            if (x >= 161 + randomNum2) {
                 x -= 4;
+                rotate += 1;
+                //cap rotation
+                if (rotate >= 25){rotate = 25;}
+            }else{
+                //rotate back
+                if (rotate > 0){rotate -= 5;}
             }
+
         }
         //speed
         y += speed;
