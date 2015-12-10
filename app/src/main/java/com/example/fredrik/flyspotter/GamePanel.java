@@ -12,7 +12,7 @@ import android.support.v4.content.IntentCompat;
 import android.view.MotionEvent;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
-
+import android.media.MediaPlayer;
 import java.util.ArrayList;
 
 
@@ -23,6 +23,8 @@ import java.util.ArrayList;
 
 public class GamePanel extends SurfaceView implements SurfaceHolder.Callback
 {
+
+
     public static final int WIDTH = 384;
     public static final int HEIGHT = 430;
     public double xpos;
@@ -61,6 +63,9 @@ public class GamePanel extends SurfaceView implements SurfaceHolder.Callback
     private Context mContext;
     int Checkwidth = this.getResources().getDisplayMetrics().widthPixels;
     int Checkheight = this.getResources().getDisplayMetrics().heightPixels;
+
+
+
 
 
 
@@ -150,6 +155,7 @@ public class GamePanel extends SurfaceView implements SurfaceHolder.Callback
         //Start the game loop
         thread.setRunning(true);
         thread.start();
+
 
 
     }
