@@ -8,8 +8,10 @@ import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Rect;
 import android.graphics.Typeface;
+import android.media.AudioAttributes;
 import android.media.AudioManager;
 import android.media.SoundPool;
+import android.os.Build;
 import android.support.v4.content.IntentCompat;
 import android.view.MotionEvent;
 import android.view.SurfaceHolder;
@@ -22,8 +24,8 @@ import java.util.List;
 
 public class GamePanel extends SurfaceView implements SurfaceHolder.Callback
 {
-    private  SoundPool sounds;
-    private int ding;
+    SoundPool sounds;
+    int ding;
 
     public static final int WIDTH = 384;
     public static final int HEIGHT = 430;
@@ -65,7 +67,6 @@ public class GamePanel extends SurfaceView implements SurfaceHolder.Callback
     int Checkheight = this.getResources().getDisplayMetrics().heightPixels;
 
 
-
     //Constructor
     public GamePanel (Context context) {
 
@@ -82,8 +83,14 @@ public class GamePanel extends SurfaceView implements SurfaceHolder.Callback
         //make gamePanel focusable so it can handle events
         setFocusable(true);
 
-        sounds = new SoundPool(10, AudioManager.STREAM_MUSIC,0);
-        ding = sounds.load(context, R.raw.ding, 1);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP){
+        //Set sounds!
+        AudioAttributes audioA = new AudioAttributes.Builder().setContentType(AudioAttributes.CONTENT_TYPE_MUSIC)
+                .setUsage(AudioAttributes.USAGE_GAME).build();
+        sounds = new SoundPool.Builder().setMaxStreams(10).setAudioAttributes(audioA).build();//(10, AudioManager.STREAM_MUSIC,0);
+        ding = sounds.load(context, R.raw.ding2, 1);
+
+        }
 
     }
 
@@ -343,6 +350,7 @@ public class GamePanel extends SurfaceView implements SurfaceHolder.Callback
                     showscore.add(new ShowScore(BitmapFactory.decodeResource(getResources(), R.drawable.score10), 48, 48, 20, flies.get(i).x, flies.get(i).y));
                     flies.remove(i);
                     score += 10;
+                    //Play sound
                     sounds.play(ding, 1.0f, 1.0f, 0, 0, 1.0f);
                     break;
                 }

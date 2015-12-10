@@ -77,6 +77,7 @@ public class Fly extends GameObject
 
     }
 
+
     public void draw(Canvas canvas)
     {
         canvas.drawBitmap(animation.getImage(), x, y, null);

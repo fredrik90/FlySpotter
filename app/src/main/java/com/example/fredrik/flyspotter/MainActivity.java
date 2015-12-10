@@ -12,6 +12,7 @@ import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.media.MediaPlayer;
+import android.widget.Button;
 
 
 public class MainActivity extends Activity {
@@ -28,21 +29,25 @@ public class MainActivity extends Activity {
 
         setContentView(R.layout.activity_main);
 
+        //Play background music
         MediaPlayer intromusic;
         intromusic = MediaPlayer.create(MainActivity.this, R.raw.introfly);
         intromusic.setLooping(true);
         intromusic.start();
+
     }
+
+
     //Start Game
     public void ClickStartGame(View view) {
+        //Sets to gamepanel!
         setContentView(new GamePanel(this));
-    //startActivity(new Intent(getApplicationContext(), GameOver.class));
-
     }
 
 
     //Highscore
     public void ClickHighScore(View view) {
+        //Open Highscore Activity
         Intent intent = new Intent(this, HighScores.class);
         startActivity(intent);
     }
