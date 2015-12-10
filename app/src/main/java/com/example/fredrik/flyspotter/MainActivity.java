@@ -29,7 +29,7 @@ public class MainActivity extends Activity {
 
         setContentView(R.layout.activity_main);
 
-        //Play background music
+        //Play background music, music found at www.freesound.org
         MediaPlayer intromusic;
         intromusic = MediaPlayer.create(MainActivity.this, R.raw.introfly);
         intromusic.setLooping(true);
