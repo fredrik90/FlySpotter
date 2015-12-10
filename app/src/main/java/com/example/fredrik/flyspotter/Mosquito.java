@@ -3,9 +3,6 @@ package com.example.fredrik.flyspotter;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 
-/**
- * Created by Fredrik on 04.12.2015.
- */
 public class Mosquito extends GameObject {
 
     private Bitmap spritesheet;
@@ -13,7 +10,7 @@ public class Mosquito extends GameObject {
 
     //Create the random number, for the x axis.
     int randomNum = (int) Math.ceil(Math.random() * 360);
-    int randomNum2 = (int) Math.ceil(Math.random() * 48);
+    int randomNum2 = (int) Math.ceil(Math.random() * 12);
     int randomNum3 = (int) Math.ceil(Math.random() * 100) + 200;
     double speed = 1.6;
     boolean move = true;
@@ -22,6 +19,8 @@ public class Mosquito extends GameObject {
     boolean setacceleration = true;
     double acceleration = 0;
     int movedirection;
+    //Rotate is the rotation angle of the mosquitoes!
+    int rotate = 0;
 
 
 
@@ -90,10 +89,16 @@ public class Mosquito extends GameObject {
         }
         if (movedirection == 1 && move == true){
             x -= acceleration;
+            rotate += acceleration;
+            //cap rotation
+            if (rotate >= 45){rotate = 45;}
         }
 
         if (movedirection == 2 && move == true){
             x += acceleration;
+            rotate -= acceleration;
+            //cap rotation
+            if (rotate <= -45){rotate = -45;}
         }
 
         if (resetacceleration == true){
@@ -110,14 +115,30 @@ public class Mosquito extends GameObject {
         //Make the flies change direction randomly.
         if (y > randomNum3) {
             //Make the flies fly to the cake!
-            if (x <= 160 - randomNum2) {
+            if (x <= 159 - randomNum2) {
                 x += 5;
                 move = false;
+                rotate -= 5;
+                //cap rotation
+                if (rotate <= -45){rotate = -45;}
+            }else{
+                //rotate back
+                if (rotate < 0){rotate += 5;}
             }
-            if (x >= 160 + randomNum2) {
+
+
+            if (x >= 161 + randomNum2) {
                 x -= 5;
                 move = false;
+                rotate -= 5;
+                //cap rotation
+                if (rotate >= 45){rotate = 45;}
+            }else{
+                //rotate back
+                if (rotate > 0){rotate -= 5;}
             }
+
+
         }
         //speed
         y += speed;

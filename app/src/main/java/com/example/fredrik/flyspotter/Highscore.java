@@ -3,10 +3,6 @@ package com.example.fredrik.flyspotter;
 import android.content.Context;
 import android.content.SharedPreferences;
 
-/**
- * Created by Fredrik on 08.12.2015.
- */
-
 //This code is reused from: http://osdir.com/ml/Android-Developers/2010-01/msg00794.html
 
 public class Highscore {

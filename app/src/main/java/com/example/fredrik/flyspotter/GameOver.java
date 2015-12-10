@@ -24,10 +24,6 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-/**
- * Created by Fredrik on 27.11.2015.
- */
-
 
 public class GameOver extends Activity {
 

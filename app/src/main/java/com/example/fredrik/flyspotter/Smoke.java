@@ -3,9 +3,6 @@ package com.example.fredrik.flyspotter;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 
-/**
- * Created by Fredrik on 24.11.2015.
- */
 public class Smoke extends GameObject
 {
     private Bitmap spritesheet;

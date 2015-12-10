@@ -9,9 +9,6 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.TextView;
 
-/**
- * Created by Fredrik on 04.12.2015.
- */
 public class HighScores extends Activity {
 
 

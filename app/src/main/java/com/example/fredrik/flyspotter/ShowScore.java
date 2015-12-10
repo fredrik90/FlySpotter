@@ -3,9 +3,6 @@ package com.example.fredrik.flyspotter;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 
-/**
- * Created by Fredrik on 04.12.2015.
- */
 public class ShowScore extends GameObject {
 
     private Bitmap spritesheet;

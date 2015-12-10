@@ -16,10 +16,6 @@ import android.media.MediaPlayer;
 import java.util.ArrayList;
 
 
-/**
- * Created by Fredrik on 23.11.2015.
- */
-
 
 public class GamePanel extends SurfaceView implements SurfaceHolder.Callback
 {

@@ -2,9 +2,6 @@ package com.example.fredrik.flyspotter;
 
 import android.graphics.Bitmap;
 
-/**
- * Created by Fredrik on 24.11.2015.
- */
 public class Animation
 {
 

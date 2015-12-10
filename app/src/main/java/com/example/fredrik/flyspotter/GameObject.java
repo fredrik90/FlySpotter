@@ -2,9 +2,6 @@ package com.example.fredrik.flyspotter;
 
 import android.graphics.Rect;
 
-/**
- * Created by Fredrik on 24.11.2015.
- */
 public abstract class GameObject
 {
 

@@ -5,9 +5,6 @@ import android.graphics.Canvas;
 
 import java.util.Random;
 
-/**
- * Created by Fredrik on 03.12.2015.
- */
 public class Bumblebee extends GameObject {
 
     private Bitmap spritesheet;

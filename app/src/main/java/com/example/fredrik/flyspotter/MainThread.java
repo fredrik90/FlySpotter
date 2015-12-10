@@ -3,9 +3,6 @@ package com.example.fredrik.flyspotter;
 import android.graphics.Canvas;
 import android.view.SurfaceHolder;
 
-/**
- * Created by Fredrik on 23.11.2015.
- */
 //The game loop
 public class MainThread extends Thread
 {
