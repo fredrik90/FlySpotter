@@ -7,4 +7,14 @@
     <string name="gameoverText">Game Over</string>
     <string name="yourscoreText">Your Score:</string>
     <string name="highscoreText">Highscores</string>
+    <string name="score_1">Score1</string>
+    <string name="score_2">Score2</string>
+    <string name="score_3">Large Text</string>
+    <string name="score_4">Large Text</string>
+    <string name="score_5">Large Text</string>
+    <string name="score_6">Large Text</string>
+    <string name="score_7">Large Text</string>
+    <string name="score_8">Large Text</string>
+    <string name="score_9">Large Text</string>
+    <string name="score_10">Large Text</string>
 </resources>
