@@ -16,9 +16,8 @@ import android.support.v4.content.IntentCompat;
 import android.view.MotionEvent;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
-import android.media.MediaPlayer;
 import java.util.ArrayList;
-import java.util.List;
+
 
 
 
@@ -70,6 +69,9 @@ public class GamePanel extends SurfaceView implements SurfaceHolder.Callback
     private Context mContext;
     int Checkwidth = this.getResources().getDisplayMetrics().widthPixels;
     int Checkheight = this.getResources().getDisplayMetrics().heightPixels;
+
+
+
 
 
     //Constructor
@@ -155,6 +157,7 @@ public class GamePanel extends SurfaceView implements SurfaceHolder.Callback
         spawn = 90;
         timer = 0;
 
+
         cakeanimation1 = 1;
         cakeanimation2 = 1;
         cakeanimation3 = 1;
@@ -210,16 +213,21 @@ public class GamePanel extends SurfaceView implements SurfaceHolder.Callback
                 //And you must wait for the swatrester, when you swat to a close position, it goes very fast! The swatrester prevents the user
                 //to spam the cake very fast, and never loose the game! And how higher the setswatrester is, how longer you have to wait until
                 //you can swat again, so if you swat near the cake the rest time is greater!
-                if (swatrester >= setswatrester){
-                if (flyswatterSwitch == false){
-                    flyswattermove = 1;
-                    flyswatterSwitch = true;
-                    swatrester = 0;
-                    if (ypos < 320){setswatrester = 10;}
-                    if (ypos > 320){setswatrester = 18;}
-                    sounds.play(woosh, 0.1f, 0.1f, 0, 0, 1.0f);
-                }
-                }
+                    if (swatrester >= setswatrester) {
+                        if (flyswatterSwitch == false) {
+
+                                flyswattermove = 1;
+                                flyswatterSwitch = true;
+                                swatrester = 0;
+                                if (ypos < 320) {
+                                    setswatrester = 10;
+                                }
+                                if (ypos > 320) {
+                                    setswatrester = 18;
+                                }
+                                sounds.play(woosh, 0.1f, 0.1f, 0, 0, 1.0f);
+                            }
+                        }
 
                 break;
             }
@@ -474,10 +482,6 @@ public class GamePanel extends SurfaceView implements SurfaceHolder.Callback
             }
         }
 
-        //slap sound when the flyswatter hits!
-        if (flyswatterSwat == true){
-            sounds.play(slap, 0.1f, 0.1f, 0, 0, 1.0f);
-        }
 
         //Make it so you can swat again!
         if (swatrester < setswatrester){swatrester++;}
@@ -505,6 +509,8 @@ public class GamePanel extends SurfaceView implements SurfaceHolder.Callback
                     //gives the illusion that you actually swat them!
                     flyswatterSwat = true;
                     swatswitch = 0;
+                    //slap sound when the flyswatter hits!
+                    sounds.play(slap, 0.1f, 0.1f, 0, 0, 1.0f);
                 }
                 //Sets the flyswatter to a given place, when its nearby, and on its way back!
                 if (flyswatter.get(0).x < 354 && flyswatter.get(0).x > 236
