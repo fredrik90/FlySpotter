@@ -27,6 +27,10 @@ public class GamePanel extends SurfaceView implements SurfaceHolder.Callback
     SoundPool sounds; //found at www.freesound.org//
     int ding;
     int woosh;
+    int backgroundMusic;
+    int slap;
+    int loose;
+    int smokepuff;
 
     public static final int WIDTH = 384;
     public static final int HEIGHT = 430;
@@ -53,7 +57,7 @@ public class GamePanel extends SurfaceView implements SurfaceHolder.Callback
     boolean flyswatterSwat;
     boolean flyswatterSwitch = false;
     public int score;
-    public int time;
+    public int time = 0;
     public int swatswitch = 0;
     public int gameovertimer = 0;
     private ArrayList<Fly> flies;
@@ -83,15 +87,34 @@ public class GamePanel extends SurfaceView implements SurfaceHolder.Callback
 
         //make gamePanel focusable so it can handle events
         setFocusable(true);
-         //Sounds found at www.freesound.org
+
+        //Sounds found at www.freesound.org
+        //For neewer versions
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP){
-        //Set sounds!
+        //Set sounds
         AudioAttributes audioA = new AudioAttributes.Builder().setContentType(AudioAttributes.CONTENT_TYPE_MUSIC)
                 .setUsage(AudioAttributes.USAGE_GAME).build();
-        sounds = new SoundPool.Builder().setMaxStreams(10).setAudioAttributes(audioA).build();//(10, AudioManager.STREAM_MUSIC,0);
-        ding = sounds.load(context, R.raw.ding2, 1);
-            woosh = sounds.load(context, R.raw.woosh, 2);
+        sounds = new SoundPool.Builder().setMaxStreams(10).setAudioAttributes(audioA).build();
+            //Get sounds
+            ding = sounds.load(context, R.raw.ding, 1);
+            woosh = sounds.load(context, R.raw.woosh, 1);
+            backgroundMusic = sounds.load(context, R.raw.background, 1);
+            slap = sounds.load(context, R.raw.slap, 1);
+            loose = sounds.load(context, R.raw.game_loose, 1);
+            smokepuff = sounds.load(context, R.raw.smoke_puff, 1);
 
+        }
+        //For older versions!
+        else {
+            //set sounds
+            sounds = new SoundPool(1, AudioManager.STREAM_MUSIC, 0);
+            //Get sounds
+            ding = sounds.load(context, R.raw.ding, 1);
+            woosh = sounds.load(context, R.raw.woosh, 1);
+            backgroundMusic = sounds.load(context, R.raw.background, 1);
+            slap = sounds.load(context, R.raw.slap, 1);
+            loose = sounds.load(context, R.raw.game_loose, 1);
+            smokepuff = sounds.load(context, R.raw.smoke_puff, 1);
         }
 
     }
@@ -138,6 +161,7 @@ public class GamePanel extends SurfaceView implements SurfaceHolder.Callback
         cakeanimation4 = 1;
         cakeanimation5 = 1;
 
+
         //Sky background
         bg3 = new Background2(BitmapFactory.decodeResource(getResources(), R.drawable.background3));
         //Cloud background
@@ -158,11 +182,9 @@ public class GamePanel extends SurfaceView implements SurfaceHolder.Callback
         showscore = new ArrayList<>();
         flyswatter.add(new Flyswatter(BitmapFactory.decodeResource(getResources(), R.drawable.fly_swatter), 96, 512, 1, 256, 334));
 
-
         //Start the game loop
         thread.setRunning(true);
         thread.start();
-
 
 
     }
@@ -213,14 +235,23 @@ public class GamePanel extends SurfaceView implements SurfaceHolder.Callback
         bg.update();
         cake.update();
 
-
         timer++;
         time++;
 
         if (lives <= 0) {
             gameovertimer++;
+            //Stops the background music!
+            sounds.play(backgroundMusic, 0f, 0f, 0, 0, 0);
+            if (gameovertimer == 1){
+                //Play loose sound!
+                sounds.play(loose, 0.6f, 0.6f, 1, 0, 1.0f);
+            }
         }
 
+        if (time == 10){
+            //Play background music, non stop!
+            sounds.play(backgroundMusic, 0.7f, 0.7f, 0, -1, 1.0f);
+        }
 
         if (gameovertimer == 40) {
             //Game over, starts the game over activity
@@ -354,7 +385,7 @@ public class GamePanel extends SurfaceView implements SurfaceHolder.Callback
                     flies.remove(i);
                     score += 10;
                     //Play sound
-                    sounds.play(ding, 1.0f, 1.0f, 0, 0, 1.0f);
+                    sounds.play(ding, 0.6f, 0.6f, 0, 0, 1.0f);
                     break;
                 }
 
@@ -365,6 +396,7 @@ public class GamePanel extends SurfaceView implements SurfaceHolder.Callback
                 smokes.add(new Smoke(BitmapFactory.decodeResource(getResources(), R.drawable.smoke), 64, 64, 8, flies.get(i).x - 16, flies.get(i).y));
                 flies.remove(i);
                 lives -= 1;
+                sounds.play(smokepuff, 0.2f, 0.2f, 0, 0, 1.0f);
                 flyswatterSwat = false;
                 break;
             }
@@ -390,7 +422,7 @@ public class GamePanel extends SurfaceView implements SurfaceHolder.Callback
                         showscore.add(new ShowScore(BitmapFactory.decodeResource(getResources(), R.drawable.score20), 48, 48, 20, bumblebee.get(i).x, bumblebee.get(i).y));
                         bumblebee.remove(i);
                         score += 20;
-                        sounds.play(ding, 1.0f, 1.0f, 0, 0, 1.0f);
+                        sounds.play(ding, 0.6f, 0.6f, 0, 0, 1.0f);
                         break;
                     }
                     flyswatterSwat = false;
@@ -403,6 +435,8 @@ public class GamePanel extends SurfaceView implements SurfaceHolder.Callback
                 smokes.add(new Smoke(BitmapFactory.decodeResource(getResources(), R.drawable.smoke), 64, 64, 8, bumblebee.get(i).x - 16, bumblebee.get(i).y));
                 bumblebee.remove(i);
                 lives-=1;
+                sounds.play(smokepuff, 0.2f, 0.2f, 0, 0, 1.0f);
+                flyswatterSwat = false;
                 break;
             }
         }
@@ -423,7 +457,7 @@ public class GamePanel extends SurfaceView implements SurfaceHolder.Callback
                 showscore.add(new ShowScore(BitmapFactory.decodeResource(getResources(), R.drawable.score15), 48, 48, 20, mosquito.get(i).x, mosquito.get(i).y));
                 mosquito.remove(i);
                 score += 15;
-                sounds.play(ding, 1.0f, 1.0f, 0, 0, 1.0f);
+                sounds.play(ding, 0.6f, 0.6f, 0, 0, 1.0f);
                 break;
             }
 
@@ -434,10 +468,17 @@ public class GamePanel extends SurfaceView implements SurfaceHolder.Callback
                 smokes.add(new Smoke(BitmapFactory.decodeResource(getResources(), R.drawable.smoke), 64, 64, 8, mosquito.get(i).x - 16, mosquito.get(i).y));
                 mosquito.remove(i);
                 lives -= 1;
+                sounds.play(smokepuff, 0.2f, 0.2f, 0, 0, 1.0f);
                 flyswatterSwat = false;
                 break;
             }
         }
+
+        //slap sound when the flyswatter hits!
+        if (flyswatterSwat == true){
+            sounds.play(slap, 0.1f, 0.1f, 0, 0, 1.0f);
+        }
+
         //Make it so you can swat again!
         if (swatrester < setswatrester){swatrester++;}
 

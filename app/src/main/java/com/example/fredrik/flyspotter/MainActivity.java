@@ -17,6 +17,8 @@ import android.widget.Button;
 
 public class MainActivity extends Activity {
 
+    private MediaPlayer intromusic;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -30,7 +32,6 @@ public class MainActivity extends Activity {
         setContentView(R.layout.activity_main);
 
         //Play background music, music found at www.freesound.org
-        MediaPlayer intromusic;
         intromusic = MediaPlayer.create(MainActivity.this, R.raw.introfly);
         intromusic.setLooping(true);
         intromusic.start();
@@ -40,12 +41,10 @@ public class MainActivity extends Activity {
 
     //Start Game
     public void ClickStartGame(View view) {
+        //Stops intro music
+        intromusic.stop();
         //Sets to gamepanel!
         setContentView(new GamePanel(this));
-        MediaPlayer background;
-        background = MediaPlayer.create(MainActivity.this, R.raw.background);
-        background.setLooping(true);
-        background.start();
     }
 
 

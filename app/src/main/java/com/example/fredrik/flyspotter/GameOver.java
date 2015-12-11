@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.view.View;
@@ -27,10 +28,16 @@ import java.util.Set;
 
 public class GameOver extends Activity {
 
+    private MediaPlayer intromusic;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        //Play background music, music found at www.freesound.org
+        intromusic = MediaPlayer.create(GameOver.this, R.raw.introfly);
+        intromusic.setLooping(true);
+        intromusic.start();
 
 
         //Get the latest score!
@@ -68,8 +75,12 @@ public class GameOver extends Activity {
     }
 
 
-    //Start Game
-    public void ClickStartGame(View view) {
+    //Retry game
+    public void ClickStartGame(View view)
+    {
+        //Stops intro music
+        intromusic.stop();
+        //Sets to gamepanel!
         setContentView(new GamePanel(this));
     }
 
