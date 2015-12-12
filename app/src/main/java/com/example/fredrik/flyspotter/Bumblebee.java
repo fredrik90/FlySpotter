@@ -80,7 +80,7 @@ public class Bumblebee extends GameObject {
         //The bumblebee becomes faster if it has one life left, and shakes!
         if (lives < 2){
 
-            newspeed = 2;
+            newspeed = 3;
             if (shake >= 0 && shake < 3){
                 x += 2;
                 shake++;
