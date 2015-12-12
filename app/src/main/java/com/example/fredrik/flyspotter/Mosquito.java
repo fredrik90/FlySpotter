@@ -12,7 +12,7 @@ public class Mosquito extends GameObject {
     int randomNum = (int) Math.ceil(Math.random() * 360);
     int randomNum2 = (int) Math.ceil(Math.random() * 12);
     int randomNum3 = (int) Math.ceil(Math.random() * 100) + 200;
-    int speed = 2;
+    int speed = 3;
     boolean move = true;
     boolean startmove = true;
     boolean resetacceleration = false;

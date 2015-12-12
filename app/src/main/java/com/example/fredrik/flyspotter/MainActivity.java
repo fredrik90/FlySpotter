@@ -13,6 +13,8 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.media.MediaPlayer;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.TextView;
 
 
 public class MainActivity extends Activity {
@@ -22,6 +24,7 @@ public class MainActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
 
         //Turn title off
         requestWindowFeature(Window.FEATURE_NO_TITLE);
@@ -55,8 +58,16 @@ public class MainActivity extends Activity {
         startActivity(intent);
     }
 
+    //Achievements
+    public void ClickAchievement(View view) {
+        //Open Achievement Activity
+        Intent intent = new Intent(this, Achievements.class);
+        startActivity(intent);
+    }
+
     //Exit Game
-    public void ClickExitGame(View view) {
+    public void ClickExitGame(View view)
+    {
         System.exit(0);
     }
 

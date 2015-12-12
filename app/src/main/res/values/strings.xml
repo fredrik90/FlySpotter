@@ -7,6 +7,7 @@
     <string name="gameoverText">Game Over</string>
     <string name="yourscoreText">Your Score:</string>
     <string name="highscoreText">Highscores</string>
+    <string name="achievementText">Achievements</string>
     <string name="EmptyScore">No Score</string>
     <string name="Back">Back</string>
     <string name="score_1">Score1</string>
