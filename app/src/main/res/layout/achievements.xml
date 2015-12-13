@@ -5,6 +5,8 @@
     android:weightSum="1"
     android:background="#500000">
 
+
+
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -19,7 +21,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="40dp"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text=""
+        android:text="text"
         android:id="@+id/getAchievement1"
         android:layout_gravity="center_horizontal" />
 
@@ -29,7 +31,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text=""
+        android:text="text"
         android:id="@+id/getAchievement2"
         android:layout_gravity="center_horizontal" />
 
@@ -39,7 +41,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text=""
+        android:text="text"
         android:id="@+id/getAchievement3"
         android:layout_gravity="center_horizontal" />
 
@@ -49,7 +51,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text=""
+        android:text="text"
         android:id="@+id/getAchievement4"
         android:layout_gravity="center_horizontal" />
 
