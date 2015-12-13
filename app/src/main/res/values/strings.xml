@@ -12,12 +12,12 @@
     <string name="Back">Back</string>
     <string name="score_1">Score1</string>
     <string name="score_2">Score2</string>
-    <string name="score_3">Large Text</string>
-    <string name="score_4">Large Text</string>
-    <string name="score_5">Large Text</string>
-    <string name="score_6">Large Text</string>
-    <string name="score_7">Large Text</string>
-    <string name="score_8">Large Text</string>
-    <string name="score_9">Large Text</string>
-    <string name="score_10">Large Text</string>
+    <string name="score_3">Score3</string>
+    <string name="score_4">Score4</string>
+    <string name="score_5">Score5</string>
+    <string name="score_6">Score6</string>
+    <string name="score_7">Score7</string>
+    <string name="score_8">Score8</string>
+    <string name="score_9">Score9</string>
+    <string name="score_10">Score10</string>
 </resources>
