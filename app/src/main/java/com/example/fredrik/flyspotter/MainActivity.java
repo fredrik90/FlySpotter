@@ -6,6 +6,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.view.View;
@@ -32,7 +33,10 @@ public class MainActivity extends Activity {
         //set to fullscreen
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.content_main);
+
+        TextView t = (TextView) findViewById(R.id.introText);
+        t.setTextColor(Color.parseColor("#0000FF"));
 
         //Play background music, music found at www.freesound.org
         intromusic = MediaPlayer.create(MainActivity.this, R.raw.introfly);
