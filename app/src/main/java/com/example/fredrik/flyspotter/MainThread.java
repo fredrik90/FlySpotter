@@ -6,6 +6,7 @@ import android.view.SurfaceHolder;
 //The game loop
 public class MainThread extends Thread
 {
+    //set variables
     private int FPS = 30;
     private double averageFPS;
     private SurfaceHolder surfaceHolder;
@@ -23,6 +24,7 @@ public class MainThread extends Thread
     }
 
     @Override
+    //When game starts running!
     public void run()
     {
         long startTime;

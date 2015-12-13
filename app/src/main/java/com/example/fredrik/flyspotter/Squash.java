@@ -12,7 +12,7 @@ public class Squash extends GameObject
     int stop = 0;
 
     public Squash(Bitmap res, int w, int h, int numFrames, int x, int y)
-    {
+    {   //get variables
         super.x = x;
         super.y = y;
         height = h;
@@ -31,7 +31,7 @@ public class Squash extends GameObject
         animation.setFrames(image);
         animation.setDelay(40);
     }
-
+    //update
     public void update()
     {
             stop++;

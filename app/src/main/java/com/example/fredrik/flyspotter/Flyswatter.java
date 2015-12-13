@@ -12,6 +12,7 @@ public class Flyswatter extends GameObject {
 
     public Flyswatter(Bitmap res, int w, int h, int numFrames, int x, int y)
     {
+        //set variables
         super.x = x;
         super.y = y;
         height = h;
@@ -32,7 +33,7 @@ public class Flyswatter extends GameObject {
         animation.setDelay(2);
 
     }
-
+    //Update
     public void update()
     {
 

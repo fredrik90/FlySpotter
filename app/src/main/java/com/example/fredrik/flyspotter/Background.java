@@ -10,14 +10,16 @@ import android.graphics.Bitmap;
 import android.graphics.Canvas;
 
 public class Background {
-
+    //Set variables
     private Bitmap image;
     private int x, y, dx;
 
+    //Constructor
     public Background(Bitmap res)
     {
         image = res;
     }
+    //Update background, give the illusion that the background is moving!
     public void update()
     {
         x+=dx;
@@ -25,6 +27,7 @@ public class Background {
             x=0;
         }
     }
+    //Draw
     public void draw(Canvas canvas)
     {
         canvas.drawBitmap(image, x, y,null);

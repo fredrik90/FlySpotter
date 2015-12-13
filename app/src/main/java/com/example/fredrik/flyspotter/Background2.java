@@ -5,6 +5,7 @@ import android.graphics.Canvas;
 
 public class Background2
 {
+    //Set variables
     private Bitmap image;
     private int x, y;
 
@@ -14,10 +15,6 @@ public class Background2
         image = res;
     }
 
-    public void update()
-    {
-
-    }
 
     //Background position
     public void draw(Canvas canvas)

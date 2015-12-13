@@ -10,6 +10,7 @@ public class Cake extends GameObject
 
     public Cake(Bitmap res, int w, int h, int numFrames)
     {
+        //Set variables
         x = 128;
         y = 332;
         dy = 0;
@@ -28,7 +29,7 @@ public class Cake extends GameObject
         animation.setFrames(image);
         animation.setDelay(60);
     }
-
+    //Update
     public void update()
     {
 

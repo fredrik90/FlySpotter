@@ -29,7 +29,7 @@ public class ShowScore extends GameObject {
         animation.setFrames(image);
         animation.setDelay(40);
     }
-
+    //Update
     public void update()
     {
         speed += 0.25;

@@ -4,7 +4,7 @@ import android.graphics.Bitmap;
 
 public class Animation
 {
-
+    //Set variables
     private Bitmap[] frames;
     private int currentFrame;
     private long startTime;
@@ -17,9 +17,9 @@ public class Animation
         currentFrame = 0;
         startTime = System.nanoTime();
     }
-
+    //Set the speed of animation
     public void setDelay(long d){delay = d;}
-
+    //Update animation
     public void update()
     {
         long elapsed = (System.nanoTime()-startTime)/1000000;
@@ -35,12 +35,12 @@ public class Animation
             playedOnce = true;
         }
     }
-
+    //return current frame
     public Bitmap getImage()
     {
         return frames[currentFrame];
     }
-
+    //Return if played once
     public boolean playedOnce(){return playedOnce;}
 
 }

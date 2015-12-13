@@ -9,7 +9,7 @@ public class Smoke extends GameObject
     private Animation animation = new Animation();
 
     public Smoke(Bitmap res, int w, int h, int numFrames, int x, int y)
-    {
+    {   //get variables
         super.x = x;
         super.y = y;
         height = h;
@@ -27,7 +27,7 @@ public class Smoke extends GameObject
         animation.setFrames(image);
         animation.setDelay(40);
     }
-
+    //Update
     public void update()
     {
         //Only go through animation once

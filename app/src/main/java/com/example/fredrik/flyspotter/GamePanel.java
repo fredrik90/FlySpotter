@@ -30,7 +30,7 @@ public class GamePanel extends SurfaceView implements SurfaceHolder.Callback
     int slap;
     int loose;
     int smokepuff;
-
+    //Set variables
     public static final int WIDTH = 384;
     public static final int HEIGHT = 430;
     public double xpos;
@@ -555,7 +555,7 @@ public class GamePanel extends SurfaceView implements SurfaceHolder.Callback
             }
 
     }
-
+    //returns collision
     public boolean collision(GameObject a, GameObject b)
     {
         if(Rect.intersects(a.getRectangle(), b.getRectangle()))
