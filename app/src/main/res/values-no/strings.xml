@@ -11,14 +11,4 @@
     <string name="achievementText">Prestasjoner</string>
     <string name="EmptyScore">Ingen Rekord</string>
     <string name="Back">Tilbake</string>
-    <string name="score_1">Poeng1</string>
-    <string name="score_2">Poeng2</string>
-    <string name="score_3">Poeng3</string>
-    <string name="score_4">Poeng4</string>
-    <string name="score_5">Poeng5</string>
-    <string name="score_6">Poeng6t</string>
-    <string name="score_7">Poeng7</string>
-    <string name="score_8">Poeng8</string>
-    <string name="score_9">Poeng9t</string>
-    <string name="score_10">Poeng10</string>
 </resources>
