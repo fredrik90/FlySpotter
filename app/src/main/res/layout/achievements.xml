@@ -8,16 +8,30 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
         android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textStyle="bold"
+        android:textSize="32sp"
         android:text="@string/achievementText"
         android:id="@+id/textView"
+        android:layout_gravity="center_horizontal" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="1dp"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textStyle="bold"
+        android:textSize="32sp"
+        android:text="0/8"
+        android:id="@+id/achievementsCounter"
         android:layout_gravity="center_horizontal" />
 
     <TextView
         android:textStyle="bold"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="30dp"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="text"
         android:id="@+id/getAchievement1"
@@ -27,7 +41,7 @@
         android:textStyle="bold"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="15dp"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="text"
         android:id="@+id/getAchievement2"
@@ -37,28 +51,67 @@
         android:textStyle="bold"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="15dp"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="text"
         android:id="@+id/getAchievement3"
+        android:layout_gravity="center_horizontal" />
+
+
+    <TextView
+        android:textStyle="bold"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="text"
+        android:id="@+id/getAchievement4"
         android:layout_gravity="center_horizontal" />
 
     <TextView
         android:textStyle="bold"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="15dp"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="text"
-        android:id="@+id/getAchievement4"
+        android:id="@+id/getAchievement5"
         android:layout_gravity="center_horizontal" />
 
+    <TextView
+    android:textStyle="bold"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="15dp"
+    android:textAppearance="?android:attr/textAppearanceLarge"
+    android:text="text"
+    android:id="@+id/getAchievement6"
+    android:layout_gravity="center_horizontal" />
 
+    <TextView
+        android:textStyle="bold"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="text"
+        android:id="@+id/getAchievement7"
+        android:layout_gravity="center_horizontal" />
+
+    <TextView
+        android:textStyle="bold"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="text"
+        android:id="@+id/getAchievement8"
+        android:layout_gravity="center_horizontal" />
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="5dp"
         android:text="@string/Back"
         android:onClick="ClickBack"
         android:id="@+id/BackButton"

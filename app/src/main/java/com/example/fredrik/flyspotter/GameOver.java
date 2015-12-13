@@ -41,6 +41,9 @@ public class GameOver extends Activity {
         //Get the latest score!
         Intent intent = getIntent();
         long scoreValue = intent.getIntExtra("Score", 0);
+        long timeValue = intent.getIntExtra("Time", 0);
+        long FastSwatCounter = intent.getIntExtra("FastSwatCounter", 0);
+        long NearCakeCounter = intent.getIntExtra("NearCakeCounter", 0);
         //Get the date!
         DateFormat dateForm = new SimpleDateFormat("dd MMM yy");
         String dateOutput = dateForm.format(new Date());
@@ -101,6 +104,42 @@ public class GameOver extends Activity {
                 //Add achievement if it does not exist!
                 AchievementDB achievement4 = new AchievementDB("It's over 9000!!!");
                 dbHandler.addAchievement(achievement4);}}
+
+        //Get this achievement if you survive for over 6 minutes!
+        //Checks if a achievement exists.
+        AchievementDB Checkachievement5 = dbHandler.findachievement("You played for more than 6 minutes!");
+        if (timeValue > 10800){
+            if (Checkachievement5 == null) {
+                //Add achievement if it does not exist!
+                AchievementDB achievement5 = new AchievementDB("You played for more than 6 minutes!");
+                dbHandler.addAchievement(achievement5);}}
+
+        //Get this achievement if you survive for over 10 minutes!
+        //Checks if a achievement exists.
+        AchievementDB Checkachievement6 = dbHandler.findachievement("You played for more than 10 minutes!");
+        if (timeValue > 1000){
+            if (Checkachievement6 == null) {
+                //Add achievement if it does not exist!
+                AchievementDB achievement6 = new AchievementDB("You played for more than 10 minutes!");
+                dbHandler.addAchievement(achievement6);}}
+
+        //Get this achievement if you swat 10 or more bugs fast!
+        //Checks if a achievement exists.
+        AchievementDB Checkachievement7 = dbHandler.findachievement("You swatted 10 or more bugs really fast!");
+        if (FastSwatCounter >= 10){
+            if (Checkachievement7 == null) {
+                //Add achievement if it does not exist!
+                AchievementDB achievement7 = new AchievementDB("You swatted 10 or more bugs really fast!");
+                dbHandler.addAchievement(achievement7);}}
+
+        //Get this achievement if you swat 10 or more bugs near the cake!
+        //Checks if a achievement exists.
+        AchievementDB Checkachievement8 = dbHandler.findachievement("You swatted 10 or more bugs near the cake!");
+        if (NearCakeCounter >= 10){
+            if (Checkachievement8 == null) {
+                //Add achievement if it does not exist!
+                AchievementDB achievement8 = new AchievementDB("You swatted 10 or more bugs near the cake!");
+                dbHandler.addAchievement(achievement8);}}
 
 
 

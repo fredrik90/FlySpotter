@@ -53,6 +53,8 @@ public class GamePanel extends SurfaceView implements SurfaceHolder.Callback
     int flyswattermove = 0;
     int swatrester = 10;
     int setswatrester = 10;
+    int FastSwatCounter = 0;
+    int NearCakeCounter = 0;
     boolean flyswatterSwat;
     boolean flyswatterSwitch = false;
     public int score;
@@ -265,6 +267,9 @@ public class GamePanel extends SurfaceView implements SurfaceHolder.Callback
             //Game over, starts the game over activity
             Intent intent = new Intent(mContext, GameOver.class);
             intent.putExtra("Score", score);
+            intent.putExtra("Time", time);
+            intent.putExtra("FastSwatCounter", FastSwatCounter);
+            intent.putExtra("NearCakeCounter", NearCakeCounter);
             //Close this activity
             intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | IntentCompat.FLAG_ACTIVITY_CLEAR_TASK);
             mContext.startActivity(intent);
@@ -390,6 +395,9 @@ public class GamePanel extends SurfaceView implements SurfaceHolder.Callback
                         && flies.get(i).y < flyswatter.get(0).y + 64 && flies.get(i).y > flyswatter.get(0).y - 64 && flyswatterSwat == true) {
                     squash.add(new Squash(BitmapFactory.decodeResource(getResources(), R.drawable.fly1_squash), 48, 32, 1, flies.get(i).x, flies.get(i).y));
                     showscore.add(new ShowScore(BitmapFactory.decodeResource(getResources(), R.drawable.score10), 48, 48, 20, flies.get(i).x, flies.get(i).y));
+                    //Swat bugs fast for achievement!
+                    if (flies.get(i).y <= 40){FastSwatCounter++;}
+                    if(collision(flies.get(i), cake)){NearCakeCounter++;}
                     flies.remove(i);
                     score += 10;
                     //Play sound
@@ -428,6 +436,9 @@ public class GamePanel extends SurfaceView implements SurfaceHolder.Callback
                     if (bumblebee.get(i).lives <= 0) {
                         squash.add(new Squash(BitmapFactory.decodeResource(getResources(), R.drawable.bumblebee_squash), 48, 48, 1, bumblebee.get(i).x, bumblebee.get(i).y));
                         showscore.add(new ShowScore(BitmapFactory.decodeResource(getResources(), R.drawable.score20), 48, 48, 20, bumblebee.get(i).x, bumblebee.get(i).y));
+                        //Swat bugs fast for achievement!
+                        if (bumblebee.get(i).y <= 40){FastSwatCounter++;}
+                        if(collision(bumblebee.get(i), cake)){NearCakeCounter++;}
                         bumblebee.remove(i);
                         score += 20;
                         sounds.play(ding, 0.6f, 0.6f, 0, 0, 1.0f);
@@ -463,6 +474,9 @@ public class GamePanel extends SurfaceView implements SurfaceHolder.Callback
                     && mosquito.get(i).y < flyswatter.get(0).y + 64 && mosquito.get(i).y > flyswatter.get(0).y - 64 && flyswatterSwat == true) {
                 squash.add(new Squash(BitmapFactory.decodeResource(getResources(), R.drawable.mosquito_squash), 24, 24, 1, mosquito.get(i).x, mosquito.get(i).y));
                 showscore.add(new ShowScore(BitmapFactory.decodeResource(getResources(), R.drawable.score15), 48, 48, 20, mosquito.get(i).x, mosquito.get(i).y));
+                //Swat bugs fast for achievement!
+                if (mosquito.get(i).y <= 40){FastSwatCounter++;}
+                if(collision(mosquito.get(i), cake)){NearCakeCounter++;}
                 mosquito.remove(i);
                 score += 15;
                 sounds.play(ding, 0.6f, 0.6f, 0, 0, 1.0f);
