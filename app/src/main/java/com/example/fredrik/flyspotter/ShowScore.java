@@ -18,11 +18,10 @@ public class ShowScore extends GameObject {
 
         //Array to sort out the different sprites
         Bitmap[] image = new Bitmap[numFrames];
-        Bitmap spritesheet = res;
 
         for (int i = 0; i < image.length; i++)
         {
-            image[i] = Bitmap.createBitmap(spritesheet, i*width, 0, width, height);
+            image[i] = Bitmap.createBitmap(res, i*width, 0, width, height);
         }
 
         animation.setFrames(image);

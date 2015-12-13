@@ -45,7 +45,6 @@ public class MainThread extends Thread
                     this.gamePanel.draw(canvas);
                     this.gamePanel.drawText(canvas);
                 }
-            } catch (Exception e) {
             }
 
             finally{
