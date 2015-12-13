@@ -3,18 +3,13 @@ package com.example.fredrik.flyspotter;
 // https://www.youtube.com/watch?v=-XOMJYZmfkw
 
 import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
-import android.provider.MediaStore;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.media.MediaPlayer;
-import android.widget.Button;
-import android.widget.EditText;
 import android.widget.TextView;
 
 

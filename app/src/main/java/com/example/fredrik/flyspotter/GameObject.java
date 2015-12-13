@@ -1,7 +1,6 @@
 package com.example.fredrik.flyspotter;
 
 import android.graphics.Rect;
-import android.media.MediaPlayer;
 
 public abstract class GameObject
 {

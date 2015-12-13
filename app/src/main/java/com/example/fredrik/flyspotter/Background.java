@@ -3,11 +3,6 @@ package com.example.fredrik.flyspotter;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 
-/**
- * Created by Fredrik on 23.11.2015.
- */
-import android.graphics.Bitmap;
-import android.graphics.Canvas;
 
 public class Background {
     //Set variables

@@ -3,7 +3,6 @@ package com.example.fredrik.flyspotter;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 
-import java.util.Random;
 
 public class Bumblebee extends GameObject {
 

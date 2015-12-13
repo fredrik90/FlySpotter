@@ -1,7 +1,6 @@
 package com.example.fredrik.flyspotter;
 
 import android.app.Activity;
-import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
