@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:weightSum="1"
@@ -25,7 +26,8 @@
         android:textSize="32sp"
         android:text="0/8"
         android:id="@+id/achievementsCounter"
-        android:layout_gravity="center_horizontal" />
+        android:layout_gravity="center_horizontal"
+        tools:ignore="HardcodedText" />
 
     <TextView
         android:textStyle="bold"
@@ -35,7 +37,8 @@
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="text"
         android:id="@+id/getAchievement1"
-        android:layout_gravity="center_horizontal" />
+        android:layout_gravity="center_horizontal"
+        tools:ignore="HardcodedText" />
 
     <TextView
         android:textStyle="bold"
@@ -45,7 +48,8 @@
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="text"
         android:id="@+id/getAchievement2"
-        android:layout_gravity="center_horizontal" />
+        android:layout_gravity="center_horizontal"
+        tools:ignore="HardcodedText" />
 
     <TextView
         android:textStyle="bold"
@@ -55,7 +59,8 @@
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="text"
         android:id="@+id/getAchievement3"
-        android:layout_gravity="center_horizontal" />
+        android:layout_gravity="center_horizontal"
+        tools:ignore="HardcodedText" />
 
 
     <TextView
@@ -66,7 +71,8 @@
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="text"
         android:id="@+id/getAchievement4"
-        android:layout_gravity="center_horizontal" />
+        android:layout_gravity="center_horizontal"
+        tools:ignore="HardcodedText" />
 
     <TextView
         android:textStyle="bold"
@@ -76,7 +82,8 @@
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="text"
         android:id="@+id/getAchievement5"
-        android:layout_gravity="center_horizontal" />
+        android:layout_gravity="center_horizontal"
+        tools:ignore="HardcodedText" />
 
     <TextView
     android:textStyle="bold"
@@ -86,7 +93,8 @@
     android:textAppearance="?android:attr/textAppearanceLarge"
     android:text="text"
     android:id="@+id/getAchievement6"
-    android:layout_gravity="center_horizontal" />
+    android:layout_gravity="center_horizontal"
+        tools:ignore="HardcodedText" />
 
     <TextView
         android:textStyle="bold"
@@ -96,7 +104,8 @@
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="text"
         android:id="@+id/getAchievement7"
-        android:layout_gravity="center_horizontal" />
+        android:layout_gravity="center_horizontal"
+        tools:ignore="HardcodedText" />
 
     <TextView
         android:textStyle="bold"
@@ -106,7 +115,8 @@
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="text"
         android:id="@+id/getAchievement8"
-        android:layout_gravity="center_horizontal" />
+        android:layout_gravity="center_horizontal"
+        tools:ignore="HardcodedText" />
 
     <Button
         android:layout_width="wrap_content"

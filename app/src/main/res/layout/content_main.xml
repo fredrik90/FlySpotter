@@ -74,7 +74,8 @@
         android:textStyle="bold"
         android:textSize="48sp"
         android:background="#FFFFFF"
-        android:layout_centerHorizontal="true" />
+        android:layout_centerHorizontal="true"
+        tools:ignore="HardcodedText" />
 
 
 </RelativeLayout>

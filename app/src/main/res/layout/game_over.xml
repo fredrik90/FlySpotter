@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:weightSum="1"
@@ -36,7 +37,8 @@
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="Score"
         android:id="@+id/getScore"
-        android:layout_gravity="center_horizontal" />
+        android:layout_gravity="center_horizontal"
+        tools:ignore="HardcodedText" />
 
 
     <Button
@@ -48,7 +50,8 @@
         android:layout_marginTop="60dp"
         android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentStart="true"
+        tools:ignore="ObsoleteLayoutParam" />
 
     <Button
         android:id="@+id/btnHighScore"
@@ -58,7 +61,8 @@
         android:onClick="ClickHighScore"
         android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentStart="true"
+        tools:ignore="ObsoleteLayoutParam" />
 
     <Button
         android:id="@+id/btnAchievements"
@@ -67,7 +71,8 @@
         android:text="@string/achievementText"
         android:onClick="ClickAchievement"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentStart="true"
+        tools:ignore="ObsoleteLayoutParam" />
 
     <Button
         android:id="@+id/btnExitGame"
@@ -77,7 +82,8 @@
         android:onClick="ClickExitGame"
         android:layout_centerVertical="true"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentStart="true"
+        tools:ignore="ObsoleteLayoutParam" />
 
 
 </LinearLayout>
