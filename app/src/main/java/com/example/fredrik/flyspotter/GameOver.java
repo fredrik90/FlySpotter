@@ -20,7 +20,7 @@ public class GameOver extends Activity {
 
     private MediaPlayer intromusic;
 
-    AchievementDBHandler dbHandler = new AchievementDBHandler(this, null, null, 1);
+    AchievementDBHandler dbHandler = new AchievementDBHandler(this);
 
 
 

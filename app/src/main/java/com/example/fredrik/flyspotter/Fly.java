@@ -17,18 +17,18 @@ public class Fly extends GameObject
 
 
 
-    public Fly(Bitmap res, int w, int h, int numFrames)
+    public Fly(Bitmap res)
     {
         //Spawning in random x axis, from a number from 0 - 336!
         x = randomNum;
         //Spawning outside the screen!
         y = -32;
-        height = h;
-        width = w;
+        height = 32;
+        width = 48;
 
 
         //Array to sort out the different sprites
-        Bitmap[] image = new Bitmap[numFrames];
+        Bitmap[] image = new Bitmap[3];
 
         for (int i = 0; i < image.length; i++)
         {

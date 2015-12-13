@@ -10,7 +10,7 @@ public class Squash extends GameObject
     //stop is for making the fly squash stop midair for a moment!
     int stop = 0;
 
-    public Squash(Bitmap res, int w, int h, int numFrames, int x, int y)
+    public Squash(Bitmap res, int w, int h, int x, int y)
     {   //get variables
         super.x = x;
         super.y = y;
@@ -19,7 +19,7 @@ public class Squash extends GameObject
 
 
         //Array to sort out the different sprites
-        Bitmap[] image = new Bitmap[numFrames];
+        Bitmap[] image = new Bitmap[1];
 
         for (int i = 0; i < image.length; i++)
         {

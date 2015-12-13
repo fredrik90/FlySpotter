@@ -7,15 +7,15 @@ public class Smoke extends GameObject
 {
     private Animation animation = new Animation();
 
-    public Smoke(Bitmap res, int w, int h, int numFrames, int x, int y)
+    public Smoke(Bitmap res, int x, int y)
     {   //get variables
         super.x = x;
         super.y = y;
-        height = h;
-        width = w;
+        height = 64;
+        width = 64;
 
         //Array to sort out the different sprites
-        Bitmap[] image = new Bitmap[numFrames];
+        Bitmap[] image = new Bitmap[8];
 
         for (int i = 0; i < image.length; i++)
         {

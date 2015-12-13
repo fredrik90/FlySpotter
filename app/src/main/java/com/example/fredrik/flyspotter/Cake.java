@@ -7,14 +7,14 @@ public class Cake extends GameObject
 {
     private Animation animation = new Animation();
 
-    public Cake(Bitmap res, int w, int h, int numFrames)
+    public Cake(Bitmap res, int numFrames)
     {
         //Set variables
         x = 128;
         y = 332;
         dy = 0;
-        height = h;
-        width = w;
+        height = 87;
+        width = 128;
 
         //Array to sort out the different sprites
         Bitmap[] image = new Bitmap[numFrames];

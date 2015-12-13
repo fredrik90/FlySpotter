@@ -9,17 +9,17 @@ public class Flyswatter extends GameObject {
 
 
 
-    public Flyswatter(Bitmap res, int w, int h, int numFrames, int x, int y)
+    public Flyswatter(Bitmap res)
     {
         //set variables
-        super.x = x;
-        super.y = y;
-        height = h;
-        width = w;
+        super.x = 256;
+        super.y = 334;
+        height = 512;
+        width = 96;
 
 
         //Array to sort out the different sprites
-        Bitmap[] image = new Bitmap[numFrames];
+        Bitmap[] image = new Bitmap[1];
 
         for (int i = 0; i < image.length; i++)
         {

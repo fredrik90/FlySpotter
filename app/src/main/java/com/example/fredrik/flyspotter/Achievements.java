@@ -22,7 +22,7 @@ public class Achievements extends Activity {
     String Achievement7;
     String Achievement8;
     int Counter = 0;
-    AchievementDBHandler dbHandler = new AchievementDBHandler(this, null, null, 1);
+    AchievementDBHandler dbHandler = new AchievementDBHandler(this);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

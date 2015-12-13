@@ -178,7 +178,7 @@ public class GamePanel extends SurfaceView implements SurfaceHolder.Callback
         bg2 = new Background2(BitmapFactory.decodeResource(getResources(), R.drawable.background2));
         //glass in windows
         bg4 = new Background2(BitmapFactory.decodeResource(getResources(), R.drawable.glass));
-        cake = new Cake(BitmapFactory.decodeResource(getResources(), R.drawable.cake), 128, 87, 4);
+        cake = new Cake(BitmapFactory.decodeResource(getResources(), R.drawable.cake), 4);
         flies = new ArrayList<>();
         bumblebee = new ArrayList<>();
         mosquito = new ArrayList<>();
@@ -186,7 +186,7 @@ public class GamePanel extends SurfaceView implements SurfaceHolder.Callback
         squash = new ArrayList<>();
         flyswatter = new ArrayList<>();
         showscore = new ArrayList<>();
-        flyswatter.add(new Flyswatter(BitmapFactory.decodeResource(getResources(), R.drawable.fly_swatter), 96, 512, 1, 256, 334));
+        flyswatter.add(new Flyswatter(BitmapFactory.decodeResource(getResources(), R.drawable.fly_swatter)));
 
         //Start the game loop
         thread.setRunning(true);
@@ -279,24 +279,24 @@ public class GamePanel extends SurfaceView implements SurfaceHolder.Callback
         //Make the cake change, depending on your lives!
         //And add smoke
         if (lives == 4 && cakeanimation1 == 1){
-                cake = new Cake(BitmapFactory.decodeResource(getResources(), R.drawable.cake2), 128, 87, 4);
+                cake = new Cake(BitmapFactory.decodeResource(getResources(), R.drawable.cake2), 4);
                 cakeanimation1 = 0;}
 
         if (lives == 3 && cakeanimation2 == 1){
-            cake = new Cake(BitmapFactory.decodeResource(getResources(), R.drawable.cake3), 128, 87, 1);
+            cake = new Cake(BitmapFactory.decodeResource(getResources(), R.drawable.cake3), 1);
             cakeanimation2 = 0;}
 
         if (lives == 2 && cakeanimation3 == 1){
-            cake = new Cake(BitmapFactory.decodeResource(getResources(), R.drawable.cake4), 128, 87, 1);
+            cake = new Cake(BitmapFactory.decodeResource(getResources(), R.drawable.cake4), 1);
             cakeanimation3 = 0;}
 
         if (lives == 1 && cakeanimation4 == 1){
-            cake = new Cake(BitmapFactory.decodeResource(getResources(), R.drawable.cake5), 128, 87, 1);
+            cake = new Cake(BitmapFactory.decodeResource(getResources(), R.drawable.cake5), 1);
             cakeanimation4 = 0;
         }
 
         if (lives <= 0 && cakeanimation5 == 1){
-            cake = new Cake(BitmapFactory.decodeResource(getResources(), R.drawable.dish), 128, 87, 1);
+            cake = new Cake(BitmapFactory.decodeResource(getResources(), R.drawable.dish), 1);
             cakeanimation5 = 0;
         }
 
@@ -347,13 +347,13 @@ public class GamePanel extends SurfaceView implements SurfaceHolder.Callback
             if (timer == spawn) {
                 timer = 0;
                 //Create the flies!
-                flies.add(new Fly(BitmapFactory.decodeResource(getResources(), R.drawable.fly1_sprite), 48, 32, 3));
+                flies.add(new Fly(BitmapFactory.decodeResource(getResources(), R.drawable.fly1_sprite)));
 
                 //Adds mosquitoes after two minutes!
-                if (time > 900){mosquito.add(new Mosquito(BitmapFactory.decodeResource(getResources(), R.drawable.mosquito), 24, 24, 2));}
+                if (time > 900){mosquito.add(new Mosquito(BitmapFactory.decodeResource(getResources(), R.drawable.mosquito)));}
 
                 //Adds bumblebees after one minute!
-                if (time > 1350){bumblebee.add(new Bumblebee(BitmapFactory.decodeResource(getResources(), R.drawable.bumblebee), 48, 48, 2));}
+                if (time > 1350){bumblebee.add(new Bumblebee(BitmapFactory.decodeResource(getResources(), R.drawable.bumblebee)));}
 
             }
 
@@ -394,8 +394,8 @@ public class GamePanel extends SurfaceView implements SurfaceHolder.Callback
 
                 if (flies.get(i).x < flyswatter.get(0).x + 64 && flies.get(i).x > flyswatter.get(0).x - 64
                         && flies.get(i).y < flyswatter.get(0).y + 64 && flies.get(i).y > flyswatter.get(0).y - 64 && flyswatterSwat == true) {
-                    squash.add(new Squash(BitmapFactory.decodeResource(getResources(), R.drawable.fly1_squash), 48, 32, 1, flies.get(i).x, flies.get(i).y));
-                    showscore.add(new ShowScore(BitmapFactory.decodeResource(getResources(), R.drawable.score10), 48, 48, 20, flies.get(i).x, flies.get(i).y));
+                    squash.add(new Squash(BitmapFactory.decodeResource(getResources(), R.drawable.fly1_squash), 48, 32, flies.get(i).x, flies.get(i).y));
+                    showscore.add(new ShowScore(BitmapFactory.decodeResource(getResources(), R.drawable.score10), flies.get(i).x, flies.get(i).y));
                     //Swat bugs fast for achievement!
                     if (flies.get(i).y <= 40){FastSwatCounter++;}
                     if(collision(flies.get(i), cake)){NearCakeCounter++;}
@@ -410,7 +410,7 @@ public class GamePanel extends SurfaceView implements SurfaceHolder.Callback
             if(collision(flies.get(i), cake) && flies.get(i).y > cake.y+24)
             {
                 //Remove the flies, when colliding with the cake!
-                smokes.add(new Smoke(BitmapFactory.decodeResource(getResources(), R.drawable.smoke), 64, 64, 8, flies.get(i).x - 16, flies.get(i).y));
+                smokes.add(new Smoke(BitmapFactory.decodeResource(getResources(), R.drawable.smoke), flies.get(i).x - 16, flies.get(i).y));
                 flies.remove(i);
                 lives -= 1;
                 sounds.play(smokepuff, 0.2f, 0.2f, 0, 0, 1.0f);
@@ -435,8 +435,8 @@ public class GamePanel extends SurfaceView implements SurfaceHolder.Callback
                     bumblebee.get(i).lives -= 1;
 
                     if (bumblebee.get(i).lives <= 0) {
-                        squash.add(new Squash(BitmapFactory.decodeResource(getResources(), R.drawable.bumblebee_squash), 48, 48, 1, bumblebee.get(i).x, bumblebee.get(i).y));
-                        showscore.add(new ShowScore(BitmapFactory.decodeResource(getResources(), R.drawable.score20), 48, 48, 20, bumblebee.get(i).x, bumblebee.get(i).y));
+                        squash.add(new Squash(BitmapFactory.decodeResource(getResources(), R.drawable.bumblebee_squash), 48, 48, bumblebee.get(i).x, bumblebee.get(i).y));
+                        showscore.add(new ShowScore(BitmapFactory.decodeResource(getResources(), R.drawable.score20), bumblebee.get(i).x, bumblebee.get(i).y));
                         //Swat bugs fast for achievement!
                         if (bumblebee.get(i).y <= 40){FastSwatCounter++;}
                         if(collision(bumblebee.get(i), cake)){NearCakeCounter++;}
@@ -452,7 +452,7 @@ public class GamePanel extends SurfaceView implements SurfaceHolder.Callback
             if(collision(bumblebee.get(i), cake) && bumblebee.get(i).y > cake.y+24)
             {
                 //Remove the flies, when colliding with the cake!
-                smokes.add(new Smoke(BitmapFactory.decodeResource(getResources(), R.drawable.smoke), 64, 64, 8, bumblebee.get(i).x - 16, bumblebee.get(i).y));
+                smokes.add(new Smoke(BitmapFactory.decodeResource(getResources(), R.drawable.smoke), bumblebee.get(i).x - 16, bumblebee.get(i).y));
                 bumblebee.remove(i);
                 lives-=1;
                 sounds.play(smokepuff, 0.2f, 0.2f, 0, 0, 1.0f);
@@ -473,8 +473,8 @@ public class GamePanel extends SurfaceView implements SurfaceHolder.Callback
 
             if (mosquito.get(i).x < flyswatter.get(0).x + 64 && mosquito.get(i).x > flyswatter.get(0).x - 64
                     && mosquito.get(i).y < flyswatter.get(0).y + 64 && mosquito.get(i).y > flyswatter.get(0).y - 64 && flyswatterSwat == true) {
-                squash.add(new Squash(BitmapFactory.decodeResource(getResources(), R.drawable.mosquito_squash), 24, 24, 1, mosquito.get(i).x, mosquito.get(i).y));
-                showscore.add(new ShowScore(BitmapFactory.decodeResource(getResources(), R.drawable.score15), 48, 48, 20, mosquito.get(i).x, mosquito.get(i).y));
+                squash.add(new Squash(BitmapFactory.decodeResource(getResources(), R.drawable.mosquito_squash), 24, 24, mosquito.get(i).x, mosquito.get(i).y));
+                showscore.add(new ShowScore(BitmapFactory.decodeResource(getResources(), R.drawable.score15), mosquito.get(i).x, mosquito.get(i).y));
                 //Swat bugs fast for achievement!
                 if (mosquito.get(i).y <= 40){FastSwatCounter++;}
                 if(collision(mosquito.get(i), cake)){NearCakeCounter++;}
@@ -488,7 +488,7 @@ public class GamePanel extends SurfaceView implements SurfaceHolder.Callback
             if(collision(mosquito.get(i), cake) && mosquito.get(i).y > cake.y+24)
             {
                 //Remove the flies, when colliding with the cake!
-                smokes.add(new Smoke(BitmapFactory.decodeResource(getResources(), R.drawable.smoke), 64, 64, 8, mosquito.get(i).x - 16, mosquito.get(i).y));
+                smokes.add(new Smoke(BitmapFactory.decodeResource(getResources(), R.drawable.smoke), mosquito.get(i).x - 16, mosquito.get(i).y));
                 mosquito.remove(i);
                 lives -= 1;
                 sounds.play(smokepuff, 0.2f, 0.2f, 0, 0, 1.0f);

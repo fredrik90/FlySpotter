@@ -23,18 +23,18 @@ public class Mosquito extends GameObject {
 
 
 
-    public Mosquito(Bitmap res, int w, int h, int numFrames)
+    public Mosquito(Bitmap res)
     {
         //Spawning in random x axis, from a number from 0 - 256!
         x = randomNum;
         //Spawning outside the screen!
         y = -48;
-        height = h;
-        width = w;
+        height = 24;
+        width = 24;
 
 
         //Array to sort out the different sprites
-        Bitmap[] image = new Bitmap[numFrames];
+        Bitmap[] image = new Bitmap[2];
 
         for (int i = 0; i < image.length; i++)
         {

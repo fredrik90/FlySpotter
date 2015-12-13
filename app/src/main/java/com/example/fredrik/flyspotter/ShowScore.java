@@ -8,16 +8,16 @@ public class ShowScore extends GameObject {
     private Animation animation = new Animation();
     float speed = 0;
 
-    public ShowScore(Bitmap res, int w, int h, int numFrames, int x, int y)
+    public ShowScore(Bitmap res, int x, int y)
     {
         super.x = x;
         super.y = y;
-        height = h;
-        width = w;
+        height = 48;
+        width = 48;
 
 
         //Array to sort out the different sprites
-        Bitmap[] image = new Bitmap[numFrames];
+        Bitmap[] image = new Bitmap[20];
 
         for (int i = 0; i < image.length; i++)
         {
