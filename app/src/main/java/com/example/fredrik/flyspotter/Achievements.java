@@ -87,7 +87,7 @@ public class Achievements extends Activity {
         }else {Achievement8 = "Not unlocked!";}
 
 
-        //Display achievements in a string!
+        //Display achievements in a textview!
         TextView t = (TextView) findViewById(R.id.getAchievement1);
         t.setText(String.valueOf(Achievement1));
         if (achievement != null) {
