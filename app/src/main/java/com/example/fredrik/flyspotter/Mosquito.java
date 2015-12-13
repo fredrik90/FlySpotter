@@ -51,7 +51,7 @@ public class Mosquito extends GameObject {
     public void update()
     {
         //Make the mosquito go a direction, depending of where it spawns!
-        if (startmove == true){
+        if (startmove){
 
             if (x <= 192) {
                 x -= 5;
@@ -64,13 +64,13 @@ public class Mosquito extends GameObject {
         }
 
         //Make the mosquito bounce from side to side.
-        if (move == true){
+        if (move){
 
             if (x <= 16) {
                 movedirection = 2;
                 startmove = false;
                 resetacceleration = true;
-                if (setacceleration == true){
+                if (setacceleration){
                     setacceleration = false;
                     acceleration = 0;
                 }
@@ -80,7 +80,7 @@ public class Mosquito extends GameObject {
                 movedirection = 1;
                 startmove = false;
                 resetacceleration = true;
-                if (setacceleration == true){
+                if (setacceleration){
                     setacceleration = false;
                     acceleration = 0;
                 }
@@ -88,21 +88,21 @@ public class Mosquito extends GameObject {
 
         }
         // make the mosquito accelerate when changing direction, and rotate the sprite!
-        if (movedirection == 1 && move == true){
+        if (movedirection == 1 && move){
             x -= acceleration;
             rotate += acceleration;
             //cap rotation
             if (rotate >= 45){rotate = 45;}
         }
 
-        if (movedirection == 2 && move == true){
+        if (movedirection == 2 && move){
             x += acceleration;
             rotate -= acceleration;
             //cap rotation
             if (rotate <= -45){rotate = -45;}
         }
         //Accelerate
-        if (resetacceleration == true){
+        if (resetacceleration){
         acceleration += 0.25;}
 
         //cap acceleration
