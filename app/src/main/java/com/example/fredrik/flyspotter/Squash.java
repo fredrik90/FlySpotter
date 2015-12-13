@@ -3,12 +3,12 @@ package com.example.fredrik.flyspotter;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 
-public class Squash extends GameObject
+class Squash extends GameObject
 {
-    private Animation animation = new Animation();
-    int speed = 0;
+    private final Animation animation = new Animation();
+    private int speed = 0;
     //stop is for making the fly squash stop midair for a moment!
-    int stop = 0;
+    private int stop = 0;
 
     public Squash(Bitmap res, int w, int h, int x, int y)
     {   //get variables

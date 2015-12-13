@@ -4,12 +4,11 @@ import android.graphics.Canvas;
 import android.view.SurfaceHolder;
 
 //The game loop
-public class MainThread extends Thread
+class MainThread extends Thread
 {
     private final SurfaceHolder surfaceHolder;
-    private GamePanel gamePanel;
+    private final GamePanel gamePanel;
     private boolean running;
-    public static Canvas canvas;
 
     //Constructor
     public MainThread(SurfaceHolder surfaceHolder, GamePanel gamePanel){
@@ -35,7 +34,7 @@ public class MainThread extends Thread
         while(running)
         {
             startTime = System.nanoTime();
-            canvas = null;
+            Canvas canvas = null;
 
             //try looking the canvas for pixel editing
             try {
@@ -48,7 +47,7 @@ public class MainThread extends Thread
             }
 
             finally{
-                if(canvas!=null)
+                if(canvas !=null)
                 {
                     try {
                         surfaceHolder.unlockCanvasAndPost(canvas);

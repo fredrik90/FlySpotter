@@ -3,9 +3,9 @@ package com.example.fredrik.flyspotter;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 
-public class Flyswatter extends GameObject {
+class Flyswatter extends GameObject {
 
-    private Animation animation = new Animation();
+    private final Animation animation = new Animation();
 
 
 

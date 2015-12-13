@@ -5,10 +5,10 @@ import android.content.SharedPreferences;
 
 //This code is reused from: http://osdir.com/ml/Android-Developers/2010-01/msg00794.html
 
-public class Highscore {
-    private SharedPreferences preferences;
-    private String dates[];
-    private long score[];
+class Highscore {
+    private final SharedPreferences preferences;
+    private final String[] dates;
+    private final long[] score;
 
     public Highscore(Context context)
     {

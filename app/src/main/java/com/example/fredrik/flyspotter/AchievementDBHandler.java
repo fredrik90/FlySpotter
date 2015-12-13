@@ -7,7 +7,7 @@ import android.content.Context;
 import android.content.ContentValues;
 import android.database.Cursor;
 
-public class AchievementDBHandler extends SQLiteOpenHelper {
+class AchievementDBHandler extends SQLiteOpenHelper {
 
 
     //Set variables
@@ -15,8 +15,8 @@ public class AchievementDBHandler extends SQLiteOpenHelper {
     private static final String DATABASE_NAME = "AchievementDB.db";
     private static final String TABLE_ACHIEVEMENT = "achievements";
 
-    public static final String COLUMN_ID = "_id";
-    public static final String COLUMN_ACHIEVEMENTNAME = "name";
+    private static final String COLUMN_ID = "_id";
+    private static final String COLUMN_ACHIEVEMENTNAME = "name";
 
     //Constructor
     public AchievementDBHandler(Context context) {

@@ -3,10 +3,10 @@ package com.example.fredrik.flyspotter;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 
-public class Background2
+class Background2
 {
     //Set variables
-    private Bitmap image;
+    private final Bitmap image;
     private int x, y;
 
     //Constructor

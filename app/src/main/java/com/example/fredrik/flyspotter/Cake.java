@@ -3,9 +3,9 @@ package com.example.fredrik.flyspotter;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 
-public class Cake extends GameObject
+class Cake extends GameObject
 {
-    private Animation animation = new Animation();
+    private final Animation animation = new Animation();
 
     public Cake(Bitmap res, int numFrames)
     {

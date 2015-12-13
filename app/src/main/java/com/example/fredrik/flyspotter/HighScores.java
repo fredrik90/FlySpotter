@@ -1,7 +1,9 @@
 package com.example.fredrik.flyspotter;
 
+import android.annotation.TargetApi;
 import android.app.Activity;
 import android.graphics.Color;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
@@ -13,6 +15,7 @@ import java.util.Objects;
 public class HighScores extends Activity {
 
 
+    @TargetApi(Build.VERSION_CODES.KITKAT)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

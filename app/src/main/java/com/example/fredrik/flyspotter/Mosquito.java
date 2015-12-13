@@ -3,21 +3,18 @@ package com.example.fredrik.flyspotter;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 
-public class Mosquito extends GameObject {
+class Mosquito extends GameObject {
 
-    private Animation animation = new Animation();
+    private final Animation animation = new Animation();
 
-    //Create the random number, for the x axis.
-    int randomNum = (int) Math.ceil(Math.random() * 360);
-    int randomNum2 = (int) Math.ceil(Math.random() * 12);
-    int randomNum3 = (int) Math.ceil(Math.random() * 100) + 200;
-    int speed = 3;
-    boolean move = true;
-    boolean startmove = true;
-    boolean resetacceleration = false;
-    boolean setacceleration = true;
-    double acceleration = 0;
-    int movedirection;
+    private final int randomNum2 = (int) Math.ceil(Math.random() * 12);
+    private final int randomNum3 = (int) Math.ceil(Math.random() * 100) + 200;
+    private boolean move = true;
+    private boolean startmove = true;
+    private boolean resetacceleration = false;
+    private boolean setacceleration = true;
+    private double acceleration = 0;
+    private int movedirection;
     //Rotate is the rotation angle of the mosquitoes!
     int rotate = 0;
 
@@ -26,6 +23,7 @@ public class Mosquito extends GameObject {
     public Mosquito(Bitmap res)
     {
         //Spawning in random x axis, from a number from 0 - 256!
+        int randomNum = (int) Math.ceil(Math.random() * 360);
         x = randomNum;
         //Spawning outside the screen!
         y = -48;
@@ -141,6 +139,7 @@ public class Mosquito extends GameObject {
 
         }
         //speed
+        int speed = 3;
         y += speed;
 
         animation.update();

@@ -4,9 +4,9 @@ import android.graphics.Bitmap;
 import android.graphics.Canvas;
 
 
-public class Background {
+class Background {
     //Set variables
-    private Bitmap image;
+    private final Bitmap image;
     private int x, y, dx;
 
     //Constructor

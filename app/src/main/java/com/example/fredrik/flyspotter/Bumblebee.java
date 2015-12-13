@@ -4,18 +4,15 @@ import android.graphics.Bitmap;
 import android.graphics.Canvas;
 
 
-public class Bumblebee extends GameObject {
+class Bumblebee extends GameObject {
 
-    private Animation animation = new Animation();
+    private final Animation animation = new Animation();
 
-    //Create the random number, for the x axis.
-    int randomNum = (int) Math.ceil(Math.random() * 336);
-    int randomNum2 = (int) Math.ceil(Math.random() * 48);
-    int randomNum3 = (int) Math.ceil(Math.random() * 100) + 200;
-    int speed = 1;
+    private final int randomNum2 = (int) Math.ceil(Math.random() * 48);
+    private final int randomNum3 = (int) Math.ceil(Math.random() * 100) + 200;
     int lives = 2;
-    int newspeed = 0;
-    int shake = 1;
+    private int newspeed = 0;
+    private int shake = 1;
     //Rotate is the rotation angle of the bumblebees!
     int rotate = 0;
 
@@ -24,6 +21,7 @@ public class Bumblebee extends GameObject {
     public Bumblebee(Bitmap res)
     {
         //Spawning in random x axis, from a number from 0 - 336!
+        int randomNum = (int) Math.ceil(Math.random() * 336);
         x = randomNum;
         //Spawning outside the screen!
         y = -64;
@@ -89,6 +87,7 @@ public class Bumblebee extends GameObject {
             }
         }
         //speed
+        int speed = 1;
         y += speed + newspeed;
 
         animation.update();

@@ -3,9 +3,9 @@ package com.example.fredrik.flyspotter;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 
-public class Smoke extends GameObject
+class Smoke extends GameObject
 {
-    private Animation animation = new Animation();
+    private final Animation animation = new Animation();
 
     public Smoke(Bitmap res, int x, int y)
     {   //get variables

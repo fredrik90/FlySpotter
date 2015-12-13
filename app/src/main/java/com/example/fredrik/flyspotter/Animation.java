@@ -2,7 +2,7 @@ package com.example.fredrik.flyspotter;
 
 import android.graphics.Bitmap;
 
-public class Animation
+class Animation
 {
     //Set variables
     private Bitmap[] frames;

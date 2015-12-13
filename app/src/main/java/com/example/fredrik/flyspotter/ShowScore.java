@@ -3,10 +3,10 @@ package com.example.fredrik.flyspotter;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 
-public class ShowScore extends GameObject {
+class ShowScore extends GameObject {
 
-    private Animation animation = new Animation();
-    float speed = 0;
+    private final Animation animation = new Animation();
+    private float speed = 0;
 
     public ShowScore(Bitmap res, int x, int y)
     {

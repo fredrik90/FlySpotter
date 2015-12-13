@@ -3,15 +3,12 @@ package com.example.fredrik.flyspotter;
         import android.graphics.Bitmap;
         import android.graphics.Canvas;
 
-public class Fly extends GameObject
+class Fly extends GameObject
 {
-    private Animation animation = new Animation();
+    private final Animation animation = new Animation();
 
-    //Create the random number, for the x axis.
-    int randomNum = (int) Math.ceil(Math.random() * 336);
-    int randomNum2 = (int) Math.ceil(Math.random() * 32);
-    int randomNum3 = (int) Math.ceil(Math.random() * 100) + 200;
-    int speed = 2;
+    private final int randomNum2 = (int) Math.ceil(Math.random() * 32);
+    private final int randomNum3 = (int) Math.ceil(Math.random() * 100) + 200;
     //Rotate is the rotation angle of the flies!
     int rotate = 0;
 
@@ -20,6 +17,7 @@ public class Fly extends GameObject
     public Fly(Bitmap res)
     {
         //Spawning in random x axis, from a number from 0 - 336!
+        int randomNum = (int) Math.ceil(Math.random() * 336);
         x = randomNum;
         //Spawning outside the screen!
         y = -32;
@@ -69,6 +67,7 @@ public class Fly extends GameObject
 
         }
         //speed
+        int speed = 2;
         y += speed;
 
         animation.update();

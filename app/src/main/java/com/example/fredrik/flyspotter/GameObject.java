@@ -2,15 +2,15 @@ package com.example.fredrik.flyspotter;
 
 import android.graphics.Rect;
 
-public abstract class GameObject
+abstract class GameObject
 {
 
-    protected int x;
-    protected int y;
+    int x;
+    int y;
     protected int dx;
-    protected int dy;
-    protected int width;
-    protected int height;
+    int dy;
+    int width;
+    int height;
 
     //Sets and gets the attributes
     public void setX(int x)
