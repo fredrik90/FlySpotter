@@ -46,6 +46,7 @@ public class Highscore {
              position++);
 
 
+
             if (position == 10) return false;
 
             for (int x = 9; x > position; x--) {
@@ -61,6 +62,7 @@ public class Highscore {
                 editor.putString("date" + x, this.dates[x]);
                 editor.putLong("score" + x, this.score[x]);
             }
+
             editor.commit();
             return true;
 

@@ -9,6 +9,7 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.TextView;
 
+@SuppressWarnings("ALL")
 public class Achievements extends Activity {
 
     //Set variables

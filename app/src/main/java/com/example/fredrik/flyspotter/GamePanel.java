@@ -21,6 +21,7 @@ import java.util.ArrayList;
 
 
 
+@SuppressWarnings("ALL")
 public class GamePanel extends SurfaceView implements SurfaceHolder.Callback
 {
     SoundPool sounds; //found at www.freesound.org//
