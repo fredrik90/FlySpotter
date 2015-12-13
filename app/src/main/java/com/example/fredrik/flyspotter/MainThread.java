@@ -6,10 +6,7 @@ import android.view.SurfaceHolder;
 //The game loop
 public class MainThread extends Thread
 {
-    //set variables
-    private int FPS = 30;
-    private double averageFPS;
-    private SurfaceHolder surfaceHolder;
+    private final SurfaceHolder surfaceHolder;
     private GamePanel gamePanel;
     private boolean running;
     public static Canvas canvas;
@@ -32,7 +29,8 @@ public class MainThread extends Thread
         long waitTime;
         long totalTime = 0;
         int frameCount = 0;
-        long targetTime = 1000/FPS;
+        int FPS = 30;
+        long targetTime = 1000/ FPS;
 
         while(running)
         {
@@ -71,7 +69,7 @@ public class MainThread extends Thread
                 frameCount++;
                 if(frameCount == FPS)
                 {
-                    averageFPS = 1000/((totalTime/frameCount)/1000000);
+                    double averageFPS = 1000 / ((totalTime / frameCount) / 1000000);
                     frameCount = 0;
                     totalTime = 0;
                     System.out.println(averageFPS);

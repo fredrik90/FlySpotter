@@ -5,7 +5,6 @@ import android.graphics.Canvas;
 
 public class Cake extends GameObject
 {
-    private Bitmap spritesheet;
     private Animation animation = new Animation();
 
     public Cake(Bitmap res, int w, int h, int numFrames)
@@ -19,7 +18,7 @@ public class Cake extends GameObject
 
         //Array to sort out the different sprites
         Bitmap[] image = new Bitmap[numFrames];
-        spritesheet = res;
+        Bitmap spritesheet = res;
 
         for (int i = 0; i < image.length; i++)
         {

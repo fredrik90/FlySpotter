@@ -5,7 +5,6 @@ import android.graphics.Canvas;
 
 public class Squash extends GameObject
 {
-    private Bitmap spritesheet;
     private Animation animation = new Animation();
     int speed = 0;
     //stop is for making the fly squash stop midair for a moment!
@@ -21,7 +20,7 @@ public class Squash extends GameObject
 
         //Array to sort out the different sprites
         Bitmap[] image = new Bitmap[numFrames];
-        spritesheet = res;
+        Bitmap spritesheet = res;
 
         for (int i = 0; i < image.length; i++)
         {

@@ -5,7 +5,6 @@ import android.graphics.Canvas;
 
 public class Smoke extends GameObject
 {
-    private Bitmap spritesheet;
     private Animation animation = new Animation();
 
     public Smoke(Bitmap res, int w, int h, int numFrames, int x, int y)
@@ -17,7 +16,7 @@ public class Smoke extends GameObject
 
         //Array to sort out the different sprites
         Bitmap[] image = new Bitmap[numFrames];
-        spritesheet = res;
+        Bitmap spritesheet = res;
 
         for (int i = 0; i < image.length; i++)
         {

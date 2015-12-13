@@ -5,7 +5,6 @@ import android.graphics.Canvas;
 
 public class Mosquito extends GameObject {
 
-    private Bitmap spritesheet;
     private Animation animation = new Animation();
 
     //Create the random number, for the x axis.
@@ -36,7 +35,7 @@ public class Mosquito extends GameObject {
 
         //Array to sort out the different sprites
         Bitmap[] image = new Bitmap[numFrames];
-        spritesheet = res;
+        Bitmap spritesheet = res;
 
         for (int i = 0; i < image.length; i++)
         {

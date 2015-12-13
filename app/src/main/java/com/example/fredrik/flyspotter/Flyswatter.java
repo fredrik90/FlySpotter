@@ -5,7 +5,6 @@ import android.graphics.Canvas;
 
 public class Flyswatter extends GameObject {
 
-    private Bitmap spritesheet;
     private Animation animation = new Animation();
 
 
@@ -21,7 +20,7 @@ public class Flyswatter extends GameObject {
 
         //Array to sort out the different sprites
         Bitmap[] image = new Bitmap[numFrames];
-        spritesheet = res;
+        Bitmap spritesheet = res;
 
         for (int i = 0; i < image.length; i++)
         {
